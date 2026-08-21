@@ -1,0 +1,23 @@
+### Java / JVM ###
+target/
+*.class
+
+### Maven Wrapper ###
+!.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+
+### Test Automation ###
+*.log
+logs/
+
+### VS Code ###
+.vscode/
+
+### Environment ###
+.env
+
+### Secrets ###
+secrets/
