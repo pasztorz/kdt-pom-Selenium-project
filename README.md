@@ -7,4 +7,4 @@ This is a Test Automation practice project to improve my skills and knowledge an
 
 URL: https://playground.qatools.dev/clinic
 
-This is a Test Automation practice page developed for training purposes. To navigate to the site, use `CTRL+Click` on the above link.
+The above page is a Test Automation practice site developed for training purposes. To navigate to the page, use `CTRL+Click` on the above link.
