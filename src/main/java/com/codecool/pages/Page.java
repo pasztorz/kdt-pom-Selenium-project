@@ -5,12 +5,12 @@ import org.openqa.selenium.WebDriver;
 import java.util.Objects;
 
 public class Page {
-  private final String url;
   private final WebDriver driver;
+  private final String url;
 
-  public Page(String url, WebDriver driver) {
-    this.url = url;
+  public Page(WebDriver driver, String url) {
     this.driver = driver;
+    this.url = url;
   }
 
   public boolean isPageOpen (String uniqueUrlPart) {
