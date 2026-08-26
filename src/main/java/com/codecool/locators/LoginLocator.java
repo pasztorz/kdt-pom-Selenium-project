@@ -8,41 +8,41 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginLocator {
 
   @FindBy(css = ".form-card")
-  WebElement lgnForm;
+  private WebElement loginForm;
 
   @FindBy(id = "login-email")
-  WebElement loginEmailFld;
+  private WebElement emailField;
 
   @FindBy(id = "login-password")
-  WebElement loginPwFld;
+  private WebElement passwordField;
 
   @FindBy(css = "button[type='submit']")
-  WebElement signInBtn;
+  private WebElement signInButton;
 
   @FindBy(css = "a[data-testid='goto-signup']")
-  WebElement registerBtn;
+  private WebElement registerButton;
 
   public LoginLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 
-  public WebElement getLgnForm() {
-    return lgnForm;
+  public WebElement getLoginForm() {
+    return loginForm;
   }
 
-  public WebElement getLoginEmailFld() {
-    return loginEmailFld;
+  public WebElement getEmailField() {
+    return emailField;
   }
 
-  public WebElement getLoginPwFld() {
-    return loginPwFld;
+  public WebElement getPasswordField() {
+    return passwordField;
   }
 
-  public WebElement getSignInBtn() {
-    return signInBtn;
+  public WebElement getSignInButton() {
+    return signInButton;
   }
 
-  public WebElement getRegisterBtn() {
-    return registerBtn;
+  public WebElement getRegisterButton() {
+    return registerButton;
   }
 }

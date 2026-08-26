@@ -7,61 +7,68 @@ import org.openqa.selenium.support.PageFactory;
 
 public class RegLocator {
 
+  @FindBy(css = ".form-card")
+  private WebElement registrationForm;
+
   @FindBy(id = "signup-name")
-  WebElement fullNameFld;
+  private WebElement nameField;
 
   @FindBy(id = "signup-email")
-  WebElement signUpEmailFld;
+  private WebElement emailField;
 
   @FindBy(id = "signup-password")
-  WebElement signUpPwFld;
+  private WebElement passwordField;
 
   @FindBy(id = "signup-confirm")
-  WebElement signUpConfFld;
+  private WebElement confirmField;
 
   @FindBy(id = "signup-country")
-  WebElement countryFld;
+  private WebElement countryField;
 
-  @FindBy(css = "div[class='row'] label:nth-child(1)")
-  WebElement femaleSelector;
+  @FindBy(css = "input[value='Female']")
+  private WebElement femaleSelector;
 
-  @FindBy(css = "div[class='row'] label:nth-child(1)")
-  WebElement maleSelector;
+  @FindBy(css = "input[value='Male']")
+  private WebElement maleSelector;
 
-  @FindBy(css = "label:nth-child(3)")
-  WebElement otherSelector;
+  @FindBy(css = "input[value='Other']")
+  private WebElement otherSelector;
 
-  @FindBy(css = "div:nth-child(7) label:nth-child(1)")
-  WebElement agreeSelector;
+  @FindBy(css = "input[name='agree']")
+  private WebElement agreeSelector;
 
   @FindBy(css = "button[type='submit']")
-  WebElement regBtn;
+  private WebElement submitButton;
 
   @FindBy(css = "a[data-testid='goto-login']")
-  WebElement regSignInBtn;
+  private WebElement navToSignInBtn;
 
   public RegLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 
-  public WebElement getFullNameFld() {
-    return fullNameFld;
+  public WebElement getRegistrationForm() {
+    return registrationForm;
   }
 
-  public WebElement getSignUpEmailFld() {
-    return signUpEmailFld;
+  public WebElement getNameField() {
+    return nameField;
   }
 
-  public WebElement getSignUpPwFld() {
-    return signUpPwFld;
+  public WebElement getEmailField() {
+    return emailField;
   }
 
-  public WebElement getSignUpConfFld() {
-    return signUpConfFld;
+  public WebElement getPasswordField() {
+    return passwordField;
   }
 
-  public WebElement getCountryFld() {
-    return countryFld;
+  public WebElement getConfirmField() {
+    return confirmField;
+  }
+
+  public WebElement getCountryField() {
+    return countryField;
   }
 
   public WebElement getFemaleSelector() {
@@ -80,11 +87,11 @@ public class RegLocator {
     return agreeSelector;
   }
 
-  public WebElement getRegBtn() {
-    return regBtn;
+  public WebElement getSubmitButton() {
+    return submitButton;
   }
 
-  public WebElement getRegSignInBtn() {
-    return regSignInBtn;
+  public WebElement getNavToSignInBtn() {
+    return navToSignInBtn;
   }
 }

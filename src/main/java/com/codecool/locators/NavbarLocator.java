@@ -8,13 +8,27 @@ import org.openqa.selenium.support.PageFactory;
 public class NavbarLocator {
 
   @FindBy(css = ".btn.nav-cta")
-  WebElement navBarSignInBtn;
+  private WebElement signInButton;
+
+  @FindBy(css = ".nav-link[data-testid='nav-profile']")
+  private WebDriver profileButton;
+
+  @FindBy(css = "button[class='btn-secondary']")
+  private WebElement logOutButton;
 
   public NavbarLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 
-  public WebElement getNavBarSignInBtn() {
-    return navBarSignInBtn;
+  public WebElement getSignInButton() {
+    return signInButton;
+  }
+
+  public WebDriver getProfileButton() {
+    return profileButton;
+  }
+
+  public WebElement getLogOutButton() {
+    return logOutButton;
   }
 }
