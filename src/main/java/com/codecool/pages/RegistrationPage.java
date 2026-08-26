@@ -2,10 +2,10 @@ package com.codecool.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class RegPage extends Page {
+public class RegistrationPage extends Page {
   private static final String URL ="https://playground.qatools.dev/signup";
 
-  public RegPage(WebDriver driver) {
+  public RegistrationPage(WebDriver driver) {
     super(driver, URL);
   }
 }

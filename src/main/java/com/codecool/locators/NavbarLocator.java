@@ -10,9 +10,6 @@ public class NavbarLocator {
   @FindBy(css = ".btn.nav-cta")
   private WebElement signInButton;
 
-  @FindBy(css = ".nav-link[data-testid='nav-profile']")
-  private WebDriver profileButton;
-
   @FindBy(css = "button[class='btn-secondary']")
   private WebElement logOutButton;
 
@@ -22,10 +19,6 @@ public class NavbarLocator {
 
   public WebElement getSignInButton() {
     return signInButton;
-  }
-
-  public WebDriver getProfileButton() {
-    return profileButton;
   }
 
   public WebElement getLogOutButton() {
