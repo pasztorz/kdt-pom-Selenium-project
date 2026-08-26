@@ -2,10 +2,10 @@ package com.codecool.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class HomePage extends Page {
+public class Home extends Page {
   private static final String URL = "https://playground.qatools.dev/clinic";
 
-  public HomePage(WebDriver driver) {
+  public Home(WebDriver driver) {
     super(driver, URL);
   }
 }
