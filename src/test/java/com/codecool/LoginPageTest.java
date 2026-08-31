@@ -1,7 +1,8 @@
 package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
-import com.codecool.pages.Home;
+import com.codecool.keywords.LoginKeyword;
+import com.codecool.pages.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,25 +10,28 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class HomePageTest {
+public class LoginTest {
   private WebDriver driver;
-  private Home home;
-  private HomeKeyword homeKeyword;
+  private LoginPage loginPage;
+  private LoginKeyword login;
 
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
-    home = new Home(driver);
-    homeKeyword = new HomeKeyword(driver);
+    loginPage = new LoginPage(driver);
+    login = new LoginKeyword(driver);
 
     driver.manage().window().maximize();
+
+    HomeKeyword homeKeyword = new HomeKeyword(driver);
+    homeKeyword.open();
   }
 
   @Test
-  public void openHomeTest() {
-    homeKeyword.open();
+  public void openLoginPageWithNavbarButtonTest() {
+    login.clickNavbarSignInBtn();
 
-    Assertions.assertTrue(home.isPageOpen("https://playground.qatools.dev"));
+    Assertions.assertTrue(loginPage.isPageOpen("login"));
   }
 
   @AfterEach
