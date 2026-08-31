@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegistrationLocator {
+public class SignUpLocator {
 
   @FindBy(css = ".form-card")
   private WebElement registrationForm;
@@ -43,7 +43,7 @@ public class RegistrationLocator {
   @FindBy(css = "a[data-testid='goto-login']")
   private WebElement navToSignInBtn;
 
-  public RegistrationLocator(WebDriver driver) {
+  public SignUpLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 

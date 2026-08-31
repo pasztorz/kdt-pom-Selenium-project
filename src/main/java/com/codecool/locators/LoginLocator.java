@@ -20,7 +20,7 @@ public class LoginLocator {
   private WebElement signInButton;
 
   @FindBy(css = "a[data-testid='goto-signup']")
-  private WebElement registerButton;
+  private WebElement createButton;
 
   @FindBy(css = "div[data-testid='login-email-error']")
   private WebElement emailError;
@@ -48,8 +48,8 @@ public class LoginLocator {
     return signInButton;
   }
 
-  public WebElement getRegisterButton() {
-    return registerButton;
+  public WebElement getCreateButton() {
+    return createButton;
   }
 
   public WebElement getEmailError() {

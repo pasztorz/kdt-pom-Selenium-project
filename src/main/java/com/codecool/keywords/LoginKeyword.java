@@ -26,4 +26,9 @@ public class LoginKeyword {
     wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getSignInButton()));
     navbarLocator.getSignInButton().click();
   }
+
+  public void clickCreateBtn() {
+    wait.until(ExpectedConditions.elementToBeClickable(loginLocator.getCreateButton()));
+    loginLocator.getCreateButton().click();
+  }
 }

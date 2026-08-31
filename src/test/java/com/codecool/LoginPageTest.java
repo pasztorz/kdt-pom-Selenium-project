@@ -2,7 +2,9 @@ package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.LoginKeyword;
+import com.codecool.keywords.SignUpKeyword;
 import com.codecool.pages.LoginPage;
+import com.codecool.pages.SignUpPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginTest {
+public class LoginPageTest {
   private WebDriver driver;
   private LoginPage loginPage;
   private LoginKeyword login;
@@ -28,8 +30,19 @@ public class LoginTest {
   }
 
   @Test
-  public void openLoginPageWithNavbarButtonTest() {
+  public void openWithNavbarButtonTest() {
     login.clickNavbarSignInBtn();
+
+    Assertions.assertTrue(loginPage.isPageOpen("login"));
+  }
+
+  @Test
+  public void openWithSignUpPageSignInBtnTest() {
+    SignUpKeyword signUp = new SignUpKeyword(driver);
+
+    login.clickNavbarSignInBtn();
+    login.clickCreateBtn();
+    signUp.clickSignInBtn();
 
     Assertions.assertTrue(loginPage.isPageOpen("login"));
   }

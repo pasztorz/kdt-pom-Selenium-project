@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegAlertLocator {
+public class SignUpAlertLocator {
 
   @FindBy(css = "div[data-testid='signup-name-error']")
   private WebElement nameError;
@@ -28,7 +28,7 @@ public class RegAlertLocator {
   @FindBy(css = "div[data-testid='signup-agree-error']")
   private WebElement agreeError;
 
-  public RegAlertLocator(WebDriver driver) {
+  public SignUpAlertLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 
