@@ -1,7 +1,6 @@
 package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
-import com.codecool.keywords.LoginKeyword;
 import com.codecool.keywords.SignUpKeyword;
 import com.codecool.pages.SignUpPage;
 import org.junit.jupiter.api.AfterEach;
@@ -14,27 +13,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SignUpPageTest {
   private WebDriver driver;
   private SignUpPage signUpPage;
-  private SignUpKeyword signUp;
-  private LoginKeyword login;
+  private SignUpKeyword signUpKeyword;
 
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
     signUpPage = new SignUpPage(driver);
-    signUp = new SignUpKeyword(driver);
-    login = new LoginKeyword(driver);
+    signUpKeyword = new SignUpKeyword(driver);
 
     driver.manage().window().maximize();
 
-    HomeKeyword home = new HomeKeyword(driver);
-
-    home.open();
-    login.clickNavbarSignInBtn();
+    HomeKeyword homeKeyword = new HomeKeyword(driver);
+    homeKeyword.openHome();
   }
 
   @Test
-  public void openSignUpPageWithCreateButtonTest() {
-    login.clickCreateBtn();
+  public void openFromLoginPageWithCreateButtonTest() {
+    signUpKeyword.openFromLoginPage();
 
     Assertions.assertTrue(signUpPage.isPageOpen("/signup"));
   }

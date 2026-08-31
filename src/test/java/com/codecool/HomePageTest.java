@@ -25,7 +25,7 @@ public class HomePageTest {
 
   @Test
   public void openHomeTest() {
-    homeKeyword.open();
+    homeKeyword.openHome();
 
     Assertions.assertTrue(home.isPageOpen("https://playground.qatools.dev"));
   }

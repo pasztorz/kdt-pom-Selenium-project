@@ -8,20 +8,20 @@ import org.openqa.selenium.support.PageFactory;
 public class HomeLocator {
 
   @FindBy(xpath = "//button[normalize-space()='Skip tour']")
-  private WebElement skipTour;
+  private WebElement skipTourButton;
 
   @FindBy(css = ".hero-cta-app.hero-cta-clinic")
-  private WebElement clinicNavBtn;
+  private WebElement clinicNavButton;
 
   public HomeLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 
-  public WebElement getSkipTour() {
-    return skipTour;
+  public WebElement getSkipTourButton() {
+    return skipTourButton;
   }
 
-  public WebElement getClinicNavBtn() {
-    return clinicNavBtn;
+  public WebElement getClinicNavButton() {
+    return clinicNavButton;
   }
 }

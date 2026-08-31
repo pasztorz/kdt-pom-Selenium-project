@@ -8,10 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 public class ClinicHomeLocator {
 
   @FindBy(css = ".clinic-subnav-link[data-testid='clinic-nav-doctors']")
-  private WebElement navbarFindDoctor;
+  private WebElement navbarFindDoctorBtn;
 
   @FindBy(css = ".clinic-subnav-link[data-testid='clinic-nav-appointments']")
-  private WebElement navbarAppointments;
+  private WebElement navbarAppointmentsBtn;
 
   @FindBy(css = ".clinic-btn-primary")
   private WebElement findDoctorBtn;
@@ -23,12 +23,12 @@ public class ClinicHomeLocator {
     PageFactory.initElements(driver, this);
   }
 
-  public WebElement getNavbarFindDoctor() {
-    return navbarFindDoctor;
+  public WebElement getNavbarFindDoctorBtn() {
+    return navbarFindDoctorBtn;
   }
 
-  public WebElement getNavbarAppointments() {
-    return navbarAppointments;
+  public WebElement getNavbarAppointmentsBtn() {
+    return navbarAppointmentsBtn;
   }
 
   public WebElement getFindDoctorBtn() {
