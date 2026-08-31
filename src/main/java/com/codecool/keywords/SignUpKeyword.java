@@ -1,6 +1,5 @@
 package com.codecool.keywords;
 
-import com.codecool.locators.LoginLocator;
 import com.codecool.locators.SignUpLocator;
 import com.codecool.pages.SignUpPage;
 import org.openqa.selenium.WebDriver;
