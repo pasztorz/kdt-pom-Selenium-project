@@ -20,4 +20,9 @@ public class Navbar {
     wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getSignInButton()));
     navbarLocator.getSignInButton().click();
   }
+
+  public boolean isLogoutDisplayed() {
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getLogOutButton()));
+    return navbarLocator.getLogOutButton().isDisplayed();
+  }
 }

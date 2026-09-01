@@ -3,6 +3,8 @@ package com.codecool;
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.LoginKeyword;
 import com.codecool.pages.LoginPage;
+import com.codecool.pages.Navbar;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,16 +30,27 @@ public class LoginPageTest {
   }
 
   @Test
-  public void openWithNavbarButtonTest() {
-    loginKeyword.openFromNavbar();
+  public void loginTest() {
+    Dotenv dotenv = Dotenv.load();
+    String email = dotenv.get("DEFAULT_TEST_USER_EMAIL");
+    String password = dotenv.get("DEFAULT_TEST_USER_PASSWORD");
 
-    Assertions.assertTrue(loginPage.isPageOpen("login"));
+    loginKeyword.openFromNavbar();
+    loginKeyword.login(email, password);
+
+    Navbar navbar = new Navbar(driver);
+    Assertions.assertTrue(navbar.isLogoutDisplayed());
   }
 
   @Test
   public void openWithSignUpPageSignInBtnTest() {
     loginKeyword.openFromSignUpPage();
+    Assertions.assertTrue(loginPage.isPageOpen("login"));
+  }
 
+  @Test
+  public void openWithNavbarButtonTest() {
+    loginKeyword.openFromNavbar();
     Assertions.assertTrue(loginPage.isPageOpen("login"));
   }
 

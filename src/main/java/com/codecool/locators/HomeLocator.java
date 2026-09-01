@@ -11,7 +11,7 @@ public class HomeLocator {
   private WebElement skipTourButton;
 
   @FindBy(css = ".hero-cta-app.hero-cta-clinic")
-  private WebElement clinicNavButton;
+  private WebElement clinicButton;
 
   public HomeLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
@@ -21,7 +21,7 @@ public class HomeLocator {
     return skipTourButton;
   }
 
-  public WebElement getClinicNavButton() {
-    return clinicNavButton;
+  public WebElement getClinicButton() {
+    return clinicButton;
   }
 }

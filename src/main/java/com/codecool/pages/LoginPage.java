@@ -19,6 +19,21 @@ public class LoginPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public void clickSingIn() {
+    wait.until(ExpectedConditions.elementToBeClickable(loginLocator.getSignInButton()));
+    loginLocator.getSignInButton().click();
+  }
+
+  public void enterPassword(String password) {
+    wait.until(ExpectedConditions.visibilityOf(loginLocator.getPasswordField()));
+    loginLocator.getPasswordField().sendKeys(password);
+  }
+
+  public void enterEmail(String email) {
+    wait.until(ExpectedConditions.visibilityOf(loginLocator.getEmailField()));
+    loginLocator.getEmailField().sendKeys(email);
+  }
+
   public void clickCreateBtn() {
     wait.until(ExpectedConditions.elementToBeClickable(loginLocator.getCreateButton()));
     loginLocator.getCreateButton().click();
