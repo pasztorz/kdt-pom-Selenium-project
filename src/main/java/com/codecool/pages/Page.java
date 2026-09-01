@@ -1,10 +1,11 @@
 package com.codecool.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
 
-public class Page {
+public abstract class Page {
   private final WebDriver driver;
   private final String url;
 
@@ -19,9 +20,5 @@ public class Page {
 
   public void openPage () {
     driver.get(url);
-  }
-
-  public String getUrl() {
-    return url;
   }
 }
