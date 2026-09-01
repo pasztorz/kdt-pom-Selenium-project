@@ -2,8 +2,6 @@ package com.codecool.service;
 
 import com.codecool.model.CountryCode;
 
-import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ValidCountryProvider {
