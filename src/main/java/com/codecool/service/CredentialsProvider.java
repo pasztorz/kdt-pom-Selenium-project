@@ -8,7 +8,7 @@ public class CredentialsProvider {
   private final String lastName;
 
   public CredentialsProvider(String firstName, String lastName) {
-    this.userID = Integer.toString(ID_COUNTER /*for later repeated signup tests: + 1*/);
+    this.userID = Integer.toString(ID_COUNTER + 1);
     this.firstName = firstName;
     this.lastName = lastName;
   }
@@ -24,7 +24,7 @@ public class CredentialsProvider {
     return firstName.toLowerCase() + userID + "." + lastName.toLowerCase() + "@example.com";
   }
 
-  public String createTestFullName() {
+  public String createTestName() {
     return firstName + userID + " " + lastName;
   }
 }

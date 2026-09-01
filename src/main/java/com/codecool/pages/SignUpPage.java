@@ -36,8 +36,8 @@ public class SignUpPage extends Page {
     clickSelector(selectedElement);
   }
 
-  public void selectCountry(String optionValue) {
-    String selector = "//select[@id='signup-country']/option[@value='" + optionValue + "']";
+  public void selectCountry(String countryCode) {
+    String selector = "//select[@id='signup-country']/option[@value='" + countryCode + "']";
     WebElement selectedElement = signUpLocator.getCountryField().findElement(By.xpath(selector));
 
     clickSelector(signUpLocator.getCountryField());

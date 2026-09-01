@@ -2,6 +2,7 @@ package com.codecool.keywords;
 
 import com.codecool.pages.LoginPage;
 import com.codecool.pages.SignUpPage;
+import com.codecool.service.GenderProvider;
 import com.codecool.service.ValidCountryProvider;
 import com.codecool.service.CredentialsProvider;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -16,6 +17,7 @@ public class SignUpKeyword {
   private final SignUpPage signUpPage;
   private final CredentialsProvider credentialsProvider = new CredentialsProvider(FIRST_NAME, LAST_NAME);
   private final ValidCountryProvider validCountryProvider = new ValidCountryProvider();
+  private final GenderProvider genderProvider = new GenderProvider();
 
   public SignUpKeyword(WebDriver driver) {
     this.loginPage = new LoginPage(driver);
@@ -23,21 +25,22 @@ public class SignUpKeyword {
   }
 
   public void signUp() {
-    String optionValue = validCountryProvider.getRandomCountry();
+    String countryCode = validCountryProvider.getRandomCountry();
+    String gender = genderProvider.getRandomGender();
 
     completeInputFields();
-    completeSelectorFields(optionValue);
+    completeSelectorFields(countryCode, gender);
     signUpPage.submit();
   }
 
-  public void completeSelectorFields(String optionValue) {
-    signUpPage.selectCountry(optionValue);
-    signUpPage.selectGender("Male");
+  public void completeSelectorFields(String countryCode, String gender) {
+    signUpPage.selectCountry(countryCode);
+    signUpPage.selectGender(gender);
     signUpPage.selectAgreement();
   }
 
   public void completeInputFields() {
-    String fullName = credentialsProvider.createTestFullName();
+    String fullName = credentialsProvider.createTestName();
     String email = credentialsProvider.createTestEmail();
     String password = credentialsProvider.createTestPassword();
 
