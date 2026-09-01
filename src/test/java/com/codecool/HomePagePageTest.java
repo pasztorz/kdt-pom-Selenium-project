@@ -1,7 +1,7 @@
 package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
-import com.codecool.pages.Home;
+import com.codecool.pages.HomePage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,15 +9,15 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class HomePageTest {
+public class HomePagePageTest {
   private WebDriver driver;
-  private Home home;
+  private HomePage homePage;
   private HomeKeyword homeKeyword;
 
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
-    home = new Home(driver);
+    homePage = new HomePage(driver);
     homeKeyword = new HomeKeyword(driver);
 
     driver.manage().window().maximize();
@@ -27,7 +27,7 @@ public class HomePageTest {
   public void openHomeTest() {
     homeKeyword.openHome();
 
-    Assertions.assertTrue(home.isPageOpen("https://playground.qatools.dev"));
+    Assertions.assertTrue(homePage.isPageOpen("https://playground.qatools.dev"));
   }
 
   @AfterEach

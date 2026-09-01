@@ -1,17 +1,17 @@
 package com.codecool.keywords;
 
-import com.codecool.pages.Home;
+import com.codecool.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 
 public class HomeKeyword {
-  private final Home home;
+  private final HomePage homePage;
 
   public HomeKeyword(WebDriver driver) {
-    this.home = new Home(driver);
+    this.homePage = new HomePage(driver);
   }
 
   public void openHome() {
-    home.openPage();
-    home.skipWelcome();
+    homePage.openPage();
+    homePage.skipWelcome();
   }
 }

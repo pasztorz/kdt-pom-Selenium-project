@@ -7,13 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class Home extends Page {
+public class HomePage extends Page {
   private static final String URL = "https://playground.qatools.dev";
 
   protected HomeLocator homeLocator;
   private final WebDriverWait wait;
 
-  public Home(WebDriver driver) {
+  public HomePage(WebDriver driver) {
     super(driver, URL);
     this.homeLocator = new HomeLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
