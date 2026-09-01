@@ -20,34 +20,22 @@ public class SignUpPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
-  public void enterConfirmedPassword(String firstName, String lastName) {
-    CredentialsProvider credentialsProvider = new CredentialsProvider(firstName, lastName);
-    String password = credentialsProvider.createTestPassword();
-
+  public void enterConfirmedPassword(String password) {
     wait.until(ExpectedConditions.visibilityOf(signUpLocator.getConfirmField()));
     signUpLocator.getConfirmField().sendKeys(password);
   }
 
-  public void enterPassword(String firstName, String lastName) {
-    CredentialsProvider credentialsProvider = new CredentialsProvider(firstName, lastName);
-    String password = credentialsProvider.createTestPassword();
-
+  public void enterPassword(String password) {
     wait.until(ExpectedConditions.visibilityOf(signUpLocator.getPasswordField()));
     signUpLocator.getPasswordField().sendKeys(password);
   }
 
-  public void enterEmail(String firstName, String lastName) {
-    CredentialsProvider credentialsProvider = new CredentialsProvider(firstName, lastName);
-    String email = credentialsProvider.createTestEmail();
-
+  public void enterEmail(String email) {
     wait.until(ExpectedConditions.visibilityOf(signUpLocator.getEmailField()));
     signUpLocator.getEmailField().sendKeys(email);
   }
 
-  public void enterFullName(String firstName, String lastName) {
-    CredentialsProvider credentialsProvider = new CredentialsProvider(firstName, lastName);
-    String fullName = credentialsProvider.createTestFullName();
-
+  public void enterFullName(String fullName) {
     wait.until(ExpectedConditions.visibilityOf(signUpLocator.getNameField()));
     signUpLocator.getNameField().sendKeys(fullName);
   }

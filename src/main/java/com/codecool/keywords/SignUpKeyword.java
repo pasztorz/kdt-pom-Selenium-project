@@ -2,6 +2,7 @@ package com.codecool.keywords;
 
 import com.codecool.pages.LoginPage;
 import com.codecool.pages.SignUpPage;
+import com.codecool.service.CredentialsProvider;
 import org.openqa.selenium.WebDriver;
 
 public class SignUpKeyword {
@@ -14,10 +15,16 @@ public class SignUpKeyword {
   }
 
   public void signUp(String firstName, String  lastName) {
-    signUpPage.enterFullName(firstName, lastName);
-    signUpPage.enterEmail(firstName, lastName);
-    signUpPage.enterPassword(firstName, lastName);
-    signUpPage.enterConfirmedPassword(firstName, lastName);
+    CredentialsProvider credentialsProvider = new CredentialsProvider(firstName, lastName);
+    String fullName = credentialsProvider.createTestFullName();
+    String email = credentialsProvider.createTestEmail();
+    String password = credentialsProvider.createTestPassword();
+    System.out.println(password);
+
+    signUpPage.enterFullName(fullName);
+    signUpPage.enterEmail(email);
+    signUpPage.enterPassword(password);
+    signUpPage.enterConfirmedPassword(password);
   }
 
   public void openFromLoginPage() {
