@@ -1,8 +1,9 @@
 package com.codecool.pages;
 
 import com.codecool.locators.SignUpLocator;
-import com.codecool.service.CredentialsProvider;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -18,6 +19,18 @@ public class SignUpPage extends Page {
     super(driver, URL);
     this.signUpLocator = new SignUpLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+  }
+
+  public void selectCountry(String optionValue) {
+    clickSelector(signUpLocator.getCountryField());
+    String selector = "/option[@value='" + optionValue + "']";
+    WebElement selectedElement = signUpLocator.getCountryField().findElement(By.xpath(selector));
+    selectedElement.click();
+  }
+
+  public void clickSelector(WebElement element) {
+    wait.until(ExpectedConditions.visibilityOf(element));
+    element.click();
   }
 
   public void enterConfirmedPassword(String password) {

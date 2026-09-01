@@ -3,8 +3,6 @@ package com.codecool;
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.SignUpKeyword;
 import com.codecool.pages.SignUpPage;
-import com.codecool.service.CredentialsProvider;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
