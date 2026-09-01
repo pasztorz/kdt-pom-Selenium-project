@@ -3,6 +3,7 @@ package com.codecool;
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.SignUpKeyword;
 import com.codecool.pages.SignUpPage;
+import com.codecool.service.CredentialsProvider;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -29,13 +30,9 @@ public class SignUpPageTest {
   }
 
   @Test
-  public void signUp() {
-    Dotenv dotenv = Dotenv.load();
-    String firstName = dotenv.get("DEFAULT_NEW_TEST_USER_FIRSTNAME");
-    String lastName = dotenv.get("DEFAULT_NEW_TEST_USER_LASTNAME");
-
+  public void signUpTest() {
     signUpKeyword.openFromLoginPage();
-    signUpKeyword.signUp(firstName, lastName);
+    signUpKeyword.signUp();
   }
 
   @Test

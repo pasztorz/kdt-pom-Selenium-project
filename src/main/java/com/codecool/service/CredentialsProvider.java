@@ -1,14 +1,14 @@
 package com.codecool.service;
 
 public class CredentialsProvider {
-  private static final int ID_COUNTER = 1;
+  private static int ID_COUNTER = 1;
 
   private final String  userID;
   private final String firstName;
   private final String lastName;
 
   public CredentialsProvider(String firstName, String lastName) {
-    this.userID = Integer.toString(ID_COUNTER);
+    this.userID = Integer.toString(ID_COUNTER /*for later repeated signup tests: + 1*/);
     this.firstName = firstName;
     this.lastName = lastName;
   }
