@@ -17,7 +17,7 @@ public class CredentialsProvider {
   }
 
   public String createTestEmail() {
-    return firstName + "1." + lastName + "@example.com";
+    return firstName.toLowerCase() + "1." + lastName.toLowerCase() + "@example.com";
   }
 
   public String createTestFullName() {

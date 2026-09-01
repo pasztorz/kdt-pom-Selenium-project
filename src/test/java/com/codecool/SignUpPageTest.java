@@ -3,6 +3,7 @@ package com.codecool;
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.SignUpKeyword;
 import com.codecool.pages.SignUpPage;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,6 +29,16 @@ public class SignUpPageTest {
   }
 
   @Test
+  public void signUp() {
+    Dotenv dotenv = Dotenv.load();
+    String firstName = dotenv.get("DEFAULT_NEW_TEST_USER_FIRSTNAME");
+    String lastName = dotenv.get("DEFAULT_NEW_TEST_USER_LASTNAME");
+
+    signUpKeyword.openFromLoginPage();
+    signUpKeyword.signUp(firstName, lastName);
+  }
+
+  @Test
   public void openFromLoginPageWithCreateButtonTest() {
     signUpKeyword.openFromLoginPage();
 
@@ -36,6 +47,6 @@ public class SignUpPageTest {
 
   @AfterEach
   void tearDown() {
-    driver.quit();
+    //driver.quit();
   }
 }
