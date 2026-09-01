@@ -25,6 +25,9 @@ public class SignUpLocator {
   @FindBy(id = "signup-country")
   private WebElement countryField;
 
+  @FindBy(css = ".row")
+  private WebElement genderSelectorRow;
+
   @FindBy(css = "input[value='Female']")
   private WebElement femaleSelector;
 
@@ -69,6 +72,10 @@ public class SignUpLocator {
 
   public WebElement getCountryField() {
     return countryField;
+  }
+
+  public WebElement getGenderSelectorRow() {
+    return genderSelectorRow;
   }
 
   public WebElement getFemaleSelector() {

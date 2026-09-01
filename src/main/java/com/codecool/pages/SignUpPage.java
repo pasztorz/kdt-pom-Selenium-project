@@ -21,11 +21,27 @@ public class SignUpPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public void submit() {
+    signUpLocator.getSubmitButton().click();
+  }
+
+  public void selectAgreement() {
+    clickSelector(signUpLocator.getAgreeSelector());
+  }
+
+  public void selectGender(String gender) {
+    String selector = "input[value='" + gender + "']";
+    WebElement selectedElement = signUpLocator.getGenderSelectorRow().findElement(By.cssSelector(selector));
+
+    clickSelector(selectedElement);
+  }
+
   public void selectCountry(String optionValue) {
-    clickSelector(signUpLocator.getCountryField());
-    String selector = "/option[@value='" + optionValue + "']";
+    String selector = "//select[@id='signup-country']/option[@value='" + optionValue + "']";
     WebElement selectedElement = signUpLocator.getCountryField().findElement(By.xpath(selector));
-    selectedElement.click();
+
+    clickSelector(signUpLocator.getCountryField());
+    clickSelector(selectedElement);
   }
 
   public void clickSelector(WebElement element) {

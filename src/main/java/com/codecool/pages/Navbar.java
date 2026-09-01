@@ -16,13 +16,18 @@ public class Navbar {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
-  public void clickNavbarSignInBtn() {
-    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getSignInButton()));
-    navbarLocator.getSignInButton().click();
+  public boolean isProfileBtnDisplayed() {
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileBtn()));
+    return navbarLocator.getProfileBtn().isDisplayed();
   }
 
   public boolean isLogoutDisplayed() {
     wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getLogOutButton()));
     return navbarLocator.getLogOutButton().isDisplayed();
+  }
+
+  public void clickNavbarSignInBtn() {
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getSignInButton()));
+    navbarLocator.getSignInButton().click();
   }
 }

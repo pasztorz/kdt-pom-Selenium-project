@@ -13,6 +13,9 @@ public class NavbarLocator {
   @FindBy(css = "button[class='btn-secondary']")
   private WebElement logOutButton;
 
+  @FindBy(css = ".nav-link[data-testid='nav-profile']")
+  private WebElement profileBtn;
+
   public NavbarLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
@@ -23,5 +26,9 @@ public class NavbarLocator {
 
   public WebElement getLogOutButton() {
     return logOutButton;
+  }
+
+  public WebElement getProfileBtn() {
+    return profileBtn;
   }
 }

@@ -27,11 +27,13 @@ public class SignUpKeyword {
 
     completeInputFields();
     completeSelectorFields(optionValue);
+    signUpPage.submit();
   }
 
   public void completeSelectorFields(String optionValue) {
     signUpPage.selectCountry(optionValue);
-
+    signUpPage.selectGender("Male");
+    signUpPage.selectAgreement();
   }
 
   public void completeInputFields() {

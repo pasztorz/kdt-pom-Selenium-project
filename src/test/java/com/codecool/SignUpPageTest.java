@@ -2,6 +2,7 @@ package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.SignUpKeyword;
+import com.codecool.pages.Navbar;
 import com.codecool.pages.SignUpPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -28,9 +29,15 @@ public class SignUpPageTest {
   }
 
   @Test
-  public void signUpTest() {
+  public void signUpWithValidCredentialsTest() {
+    Navbar navbar = new Navbar(driver);
+
     signUpKeyword.openFromLoginPage();
     signUpKeyword.signUp();
+
+    Assertions.assertTrue(signUpPage.isPageOpen("https://playground.qatools.dev/"));
+    Assertions.assertTrue(navbar.isLogoutDisplayed());
+    Assertions.assertTrue(navbar.isProfileBtnDisplayed());
   }
 
   @Test
