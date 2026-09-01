@@ -2,6 +2,7 @@ package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.LoginKeyword;
+import com.codecool.pages.Home;
 import com.codecool.pages.LoginPage;
 import com.codecool.pages.Navbar;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -39,7 +40,9 @@ public class LoginPageTest {
     loginKeyword.login(email, password);
 
     Navbar navbar = new Navbar(driver);
+    Home home = new Home(driver);
     Assertions.assertTrue(navbar.isLogoutDisplayed());
+    Assertions.assertTrue(home.isPageOpen("https://playground.qatools.dev"));
   }
 
   @Test
