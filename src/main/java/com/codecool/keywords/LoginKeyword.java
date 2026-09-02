@@ -16,8 +16,16 @@ public class LoginKeyword {
     this.loginPage = new LoginPage(driver);
   }
 
-  public String getErrorMessage() {
-    return loginPage.getEmailErrorText();
+  public String getErrorMessage(String parameter) {
+    String result = "";
+
+    switch (parameter) {
+      case "email" -> result = loginPage.getEmailErrorText();
+      case "password" -> result = loginPage.getPasswordErrorText();
+      case "credentials" -> result = loginPage.getCredentialsErrorText();
+    }
+
+    return result;
   }
 
   public void login(String email, String password) {

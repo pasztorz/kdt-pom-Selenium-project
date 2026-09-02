@@ -29,7 +29,7 @@ public class LoginLocator {
   private WebElement passwordError;
 
   @FindBy(css = "div[role='alert']")
-  private WebElement invalidCredetialError;
+  private WebElement invalidCredetialsError;
 
   public LoginLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
@@ -63,7 +63,7 @@ public class LoginLocator {
     return passwordError;
   }
 
-  public WebElement getInvalidCredetialError() {
-    return invalidCredetialError;
+  public WebElement getCredentialsError() {
+    return invalidCredetialsError;
   }
 }

@@ -10,6 +10,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -30,14 +32,13 @@ public class LoginPageTest {
     homeKeyword.openHome();
   }
 
-  @Test
-  public void loginWithInvalidCredentialTest() {
+  @ParameterizedTest
+  @CsvFileSource(resources = "/testdata/invalid_login_credentials.csv", numLinesToSkip = 1)
+  public void loginWithInvalidCredentialTest(String parameter, String email, String password, String expected) {
     loginKeyword.openFromNavbar();
-    loginKeyword.login("", "Demo@1234");
+    loginKeyword.login(email, password);
 
-    String expected = "Email is required";
-
-    Assertions.assertEquals(expected, loginKeyword.getErrorMessage());
+    Assertions.assertEquals(expected, loginKeyword.getErrorMessage(parameter));
   }
 
   @Test
