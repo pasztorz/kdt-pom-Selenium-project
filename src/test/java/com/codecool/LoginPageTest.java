@@ -31,6 +31,16 @@ public class LoginPageTest {
   }
 
   @Test
+  public void loginWithInvalidCredentialTest() {
+    loginKeyword.openFromNavbar();
+    loginKeyword.login("", "Demo@1234");
+
+    String expected = "Email is required";
+
+    Assertions.assertEquals(expected, loginKeyword.getErrorMessage());
+  }
+
+  @Test
   public void loginTest() {
     Dotenv dotenv = Dotenv.load();
     String email = dotenv.get("DEFAULT_TEST_USER_EMAIL");

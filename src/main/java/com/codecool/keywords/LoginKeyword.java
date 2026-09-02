@@ -16,6 +16,10 @@ public class LoginKeyword {
     this.loginPage = new LoginPage(driver);
   }
 
+  public String getErrorMessage() {
+    return loginPage.getEmailErrorText();
+  }
+
   public void login(String email, String password) {
     loginPage.enterEmail(email);
     loginPage.enterPassword(password);
