@@ -39,6 +39,7 @@ public class LoginPageTest {
     loginKeyword.login(email, password);
 
     Assertions.assertEquals(expected, loginKeyword.getErrorMessage(parameter));
+    Assertions.assertTrue(loginPage.isPageOpen("login"));
   }
 
   @Test
