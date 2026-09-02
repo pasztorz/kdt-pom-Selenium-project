@@ -1,5 +1,6 @@
 package com.codecool.pages;
 
+import com.codecool.locators.SignUpAlertLocator;
 import com.codecool.locators.SignUpLocator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,7 @@ public class SignUpPage extends Page {
   private static final String URL ="https://playground.qatools.dev/signup";
 
   protected SignUpLocator signUpLocator;
+  protected SignUpAlertLocator alertLocator;
   private final WebDriverWait wait;
 
   public SignUpPage(WebDriver driver) {
