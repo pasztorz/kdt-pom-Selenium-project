@@ -34,7 +34,7 @@ public class LoginPageTest {
 
   @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_login_credentials.csv", numLinesToSkip = 1)
-  public void loginWithInvalidCredentialTest(String field, String email, String password, String expected) {
+  public void loginWithInvalidCredentialsTest(String field, String email, String password, String expected) {
     loginKeyword.openFromNavbar();
     loginKeyword.login(email, password);
 
@@ -43,7 +43,7 @@ public class LoginPageTest {
   }
 
   @Test
-  public void loginTest() {
+  public void loginValidCredentialsTest() {
     Dotenv dotenv = Dotenv.load();
     String email = dotenv.get("DEFAULT_TEST_USER_EMAIL");
     String password = dotenv.get("DEFAULT_TEST_USER_PASSWORD");

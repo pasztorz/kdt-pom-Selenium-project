@@ -43,7 +43,6 @@ public class SignUpPageTest {
   @Test
   public void openFromLoginPageWithCreateButtonTest() {
     signUpKeyword.openFromLoginPage();
-
     Assertions.assertTrue(signUpPage.isPageOpen("/signup"));
   }
 
