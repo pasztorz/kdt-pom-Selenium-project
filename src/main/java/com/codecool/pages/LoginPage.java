@@ -19,6 +19,17 @@ public class LoginPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public String getErrorMessage(String field) {
+    String result = "";
+
+    switch (field) {
+      case "email" -> result = getEmailErrorText();
+      case "password" -> result = getPasswordErrorText();
+      case "credentials" -> result = getCredentialsErrorText();
+    }
+    return result;
+  }
+
   public String getCredentialsErrorText() {
     wait.until(ExpectedConditions.visibilityOf(loginLocator.getCredentialsError()));
     return loginLocator.getCredentialsError().getAttribute("innerText");

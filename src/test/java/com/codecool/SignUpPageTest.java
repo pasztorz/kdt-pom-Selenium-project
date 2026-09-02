@@ -49,6 +49,6 @@ public class SignUpPageTest {
 
   @AfterEach
   void tearDown() {
-    //driver.quit();
+    driver.quit();
   }
 }

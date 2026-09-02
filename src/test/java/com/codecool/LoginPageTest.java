@@ -34,11 +34,11 @@ public class LoginPageTest {
 
   @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_login_credentials.csv", numLinesToSkip = 1)
-  public void loginWithInvalidCredentialTest(String parameter, String email, String password, String expected) {
+  public void loginWithInvalidCredentialTest(String field, String email, String password, String expected) {
     loginKeyword.openFromNavbar();
     loginKeyword.login(email, password);
 
-    Assertions.assertEquals(expected, loginKeyword.getErrorMessage(parameter));
+    Assertions.assertEquals(expected, loginPage.getErrorMessage(field));
     Assertions.assertTrue(loginPage.isPageOpen("login"));
   }
 
@@ -53,6 +53,7 @@ public class LoginPageTest {
 
     Navbar navbar = new Navbar(driver);
     HomePage homePage = new HomePage(driver);
+
     Assertions.assertTrue(navbar.isLogoutDisplayed());
     Assertions.assertTrue(homePage.isPageOpen("https://playground.qatools.dev"));
   }
