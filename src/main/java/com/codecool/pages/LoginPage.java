@@ -19,6 +19,27 @@ public class LoginPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public String getInvalidCredentialErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(loginLocator.getInvalidCredetialError()));
+    String errorInnerText = loginLocator.getInvalidCredetialError().getAttribute("innerText");
+    System.out.println(errorInnerText);
+    return errorInnerText;
+  }
+
+  public String getpasswordErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(loginLocator.getPasswordError()));
+    String errorInnerText = loginLocator.getPasswordError().getAttribute("innerText");
+    System.out.println(errorInnerText);
+    return errorInnerText;
+  }
+
+  public String getEmailErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(loginLocator.getEmailError()));
+    String errorInnerText = loginLocator.getEmailError().getAttribute("innerText");
+    System.out.println(errorInnerText);
+    return errorInnerText;
+  }
+
   public void clickSingIn() {
     wait.until(ExpectedConditions.elementToBeClickable(loginLocator.getSignInButton()));
     loginLocator.getSignInButton().click();

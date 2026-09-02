@@ -23,10 +23,13 @@ public class LoginLocator {
   private WebElement createButton;
 
   @FindBy(css = "div[data-testid='login-email-error']")
-  private WebElement emailErrorText;
+  private WebElement emailError;
 
   @FindBy(css = "div[data-testid='login-password-error']")
-  private WebElement passwordErrorText;
+  private WebElement passwordError;
+
+  @FindBy(css = "div[role='alert']")
+  private WebElement invalidCredetialError;
 
   public LoginLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
@@ -52,11 +55,15 @@ public class LoginLocator {
     return createButton;
   }
 
-  public WebElement getEmailErrorText() {
-    return emailErrorText;
+  public WebElement getEmailError() {
+    return emailError;
   }
 
-  public WebElement getPasswordErrorText() {
-    return passwordErrorText;
+  public WebElement getPasswordError() {
+    return passwordError;
+  }
+
+  public WebElement getInvalidCredetialError() {
+    return invalidCredetialError;
   }
 }
