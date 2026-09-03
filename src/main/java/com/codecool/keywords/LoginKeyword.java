@@ -28,9 +28,7 @@ public class LoginKeyword {
   }
 
   public void login() {
-    loginPage.enterEmail(EMAIL);
-    loginPage.enterPassword(PASSWORD);
-    loginPage.clickSingIn();
+    login(EMAIL, PASSWORD);
   }
 
   public void openFromSignUpPage() {

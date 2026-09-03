@@ -19,15 +19,15 @@ public class LoginPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
-  public String getErrorMessage(String field) {
-    String result = "";
+  public String getErrorMessage(String fieldName) {
+    String errorMessage = "";
 
-    switch (field) {
-      case "email" -> result = getEmailErrorText();
-      case "password" -> result = getPasswordErrorText();
-      case "credentials" -> result = getCredentialsErrorText();
+    switch (fieldName) {
+      case "email" -> errorMessage = getEmailErrorText();
+      case "password" -> errorMessage = getPasswordErrorText();
+      case "credentials" -> errorMessage = getCredentialsErrorText();
     }
-    return result;
+    return errorMessage;
   }
 
   public String getCredentialsErrorText() {

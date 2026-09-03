@@ -24,6 +24,22 @@ public class SignUpPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public boolean isErrorDisplayed(String fieldName) {
+    boolean isVisible = false;
+
+    switch (fieldName) {
+      case "name" -> isVisible = errorLocator.getNameError().isDisplayed();
+      case "email" -> isVisible = errorLocator.getEmailError().isDisplayed();
+      case "password" -> isVisible = errorLocator.getPasswordError().isDisplayed();
+      case "confirmation" -> isVisible = errorLocator.getConfirmedPasswordError().isDisplayed();
+      case "country" -> isVisible = errorLocator.getCountryError().isDisplayed();
+      case "gender" -> isVisible = errorLocator.getGenderError().isDisplayed();
+      case "agreement" -> isVisible = errorLocator.getAgreementError().isDisplayed();
+      case "account" -> isVisible = errorLocator.getExistingAccountError().isDisplayed();
+    }
+    return isVisible;
+  }
+
   public String getErrorMessage(String fieldName) {
     String errorMessage = "";
 

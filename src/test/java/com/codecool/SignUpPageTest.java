@@ -31,7 +31,18 @@ public class SignUpPageTest {
   }
 
   @ParameterizedTest
-  @CsvFileSource(resources = "/testdata/invalid_reg_credentials.csv", numLinesToSkip = 1)
+  @CsvFileSource(resources = "/testdata/invalid_reg_credentials_v2.csv", numLinesToSkip = 1)
+  public void signUpWithErrorsTestV2(String field, String name, String email, String password, String confirmation,
+                                           String countryCode, String gender, String agreement) {
+    signUpKeyword.openFromLoginPage();
+    signUpKeyword.signUp(name, email, password, confirmation, countryCode, gender, agreement);
+
+    Assertions.assertTrue(signUpPage.isErrorDisplayed(field));
+    Assertions.assertTrue(signUpPage.isPageOpen("signup"));
+  }
+
+  @ParameterizedTest
+  @CsvFileSource(resources = "/testdata/invalid_reg_credentials_v1.csv", numLinesToSkip = 1)
   public void signUpWithErrorsTest(String field, String name, String email, String password, String confirmation,
                                            String countryCode, String gender, String agreement, String expected) {
     signUpKeyword.openFromLoginPage();
