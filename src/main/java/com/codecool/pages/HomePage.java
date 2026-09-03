@@ -10,7 +10,7 @@ import java.time.Duration;
 public class HomePage extends Page {
   private static final String URL = "https://playground.qatools.dev";
 
-  protected HomeLocator homeLocator;
+  private final HomeLocator homeLocator;
   private final WebDriverWait wait;
 
   public HomePage(WebDriver driver) {

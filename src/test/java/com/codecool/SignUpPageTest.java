@@ -32,10 +32,10 @@ public class SignUpPageTest {
 
   @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_reg_credentials.csv", numLinesToSkip = 1)
-  public void signUpWithErrorsTest(String field, String name, String email, String password,
+  public void signUpWithErrorsTest(String field, String name, String email, String password, String confirmation,
                                            String countryCode, String gender, String agreement, String expected) {
     signUpKeyword.openFromLoginPage();
-    signUpKeyword.signUp(name, email, password, countryCode, gender, agreement);
+    signUpKeyword.signUp(name, email, password, confirmation, countryCode, gender, agreement);
 
     Assertions.assertEquals(expected, signUpPage.getErrorMessage(field));
     Assertions.assertTrue(signUpPage.isPageOpen("signup"));

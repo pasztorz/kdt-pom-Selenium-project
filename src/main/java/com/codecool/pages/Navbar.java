@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Navbar {
-  protected NavbarLocator navbarLocator;
+  private final NavbarLocator navbarLocator;
   private final WebDriverWait wait;
 
   public Navbar(WebDriver driver) {

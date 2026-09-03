@@ -24,10 +24,15 @@ public class SignUpKeyword {
     this.signUpPage = new SignUpPage(driver);
   }
 
-  public void signUp(String name, String email, String password,
+  public void signUp(String name, String email, String password, String confirmedPass,
                      String countryCode, String gender, String agreement) {
-    completeInputFields(name, email, password);
-    completeSelectorFields(countryCode, gender, agreement);
+    signUpPage.enterFullName(name);
+    signUpPage.enterEmail(email);
+    signUpPage.enterPassword(password);
+    signUpPage.enterConfirmedPassword(confirmedPass);
+    signUpPage.selectCountry(countryCode);
+    signUpPage.selectGender(gender);
+    signUpPage.selectAgreement(agreement);
     signUpPage.submit();
   }
 
@@ -39,20 +44,7 @@ public class SignUpKeyword {
     String gender = genderProvider.getRandomGender();
     String agreement = "agree";
 
-    signUp(name, email, password, countryCode, gender, agreement);
-  }
-
-  public void completeSelectorFields(String countryCode, String gender, String agreement) {
-    signUpPage.selectCountry(countryCode);
-    signUpPage.selectGender(gender);
-    signUpPage.selectAgreement(agreement);
-  }
-
-  public void completeInputFields(String name, String email, String password) {
-    signUpPage.enterFullName(name);
-    signUpPage.enterEmail(email);
-    signUpPage.enterPassword(password);
-    signUpPage.enterConfirmedPassword(password);
+    signUp(name, email, password, password, countryCode, gender, agreement);
   }
 
   public void openFromLoginPage() {

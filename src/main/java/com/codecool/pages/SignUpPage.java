@@ -13,13 +13,14 @@ import java.time.Duration;
 public class SignUpPage extends Page {
   private static final String URL ="https://playground.qatools.dev/signup";
 
-  protected SignUpLocator signUpLocator;
-  protected SignUpErrorLocator errorLocator;
+  private final SignUpLocator signUpLocator;
+  private final SignUpErrorLocator errorLocator;
   private final WebDriverWait wait;
 
   public SignUpPage(WebDriver driver) {
     super(driver, URL);
     this.signUpLocator = new SignUpLocator(driver);
+    this.errorLocator = new SignUpErrorLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
@@ -34,8 +35,14 @@ public class SignUpPage extends Page {
       case "country" -> errorMessage = getCountryErrorText();
       case "gender" -> errorMessage = getGenderErrorText();
       case "agreement" -> errorMessage = getAgreementErrorText();
+      case "account" -> errorMessage = getExistingAccountErrorText();
     }
     return errorMessage;
+  }
+
+  public String getExistingAccountErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getExistingAccountError()));
+    return errorLocator.getExistingAccountError().getAttribute("innerText");
   }
 
   public String getAgreementErrorText() {
@@ -94,11 +101,16 @@ public class SignUpPage extends Page {
   }
 
   public void selectCountry(String countryCode) {
-    String selector = "//select[@id='signup-country']/option[@value='" + countryCode + "']";
-    WebElement selectedElement = signUpLocator.getCountryField().findElement(By.xpath(selector));
 
-    clickSelector(signUpLocator.getCountryField());
-    clickSelector(selectedElement);
+    if (countryCode.equals("Select a country")) {
+      clickSelector(signUpLocator.getCountryField());
+    } else {
+      String selector = "//select[@id='signup-country']/option[@value='" + countryCode + "']";
+      WebElement selectedElement = signUpLocator.getCountryField().findElement(By.xpath(selector));
+
+      clickSelector(signUpLocator.getCountryField());
+      clickSelector(selectedElement);
+    }
   }
 
   public void clickSelector(WebElement element) {

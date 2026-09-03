@@ -28,6 +28,9 @@ public class SignUpErrorLocator {
   @FindBy(css = "div[data-testid='signup-agree-error']")
   private WebElement agreementError;
 
+  @FindBy(css = "div[role='alert']")
+  private WebElement existingAccountError;
+
   public SignUpErrorLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
@@ -58,5 +61,9 @@ public class SignUpErrorLocator {
 
   public WebElement getAgreementError() {
     return agreementError;
+  }
+
+  public WebElement getExistingAccountError() {
+    return existingAccountError;
   }
 }

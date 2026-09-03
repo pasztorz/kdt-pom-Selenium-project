@@ -10,7 +10,7 @@ import java.time.Duration;
 public class LoginPage extends Page {
   private static final String URL = "https://playground.qatools.dev/login";
 
-  protected LoginLocator loginLocator;
+  private final LoginLocator loginLocator;
   private final WebDriverWait wait;
 
   public LoginPage(WebDriver driver) {
