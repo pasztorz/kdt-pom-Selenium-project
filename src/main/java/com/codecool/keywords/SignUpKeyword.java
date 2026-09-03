@@ -25,25 +25,25 @@ public class SignUpKeyword {
   }
 
   public void signUp() {
-    String countryCode = countryProvider.getRandomCountry();
-    String gender = genderProvider.getRandomGender();
-
-    completeInputFields();
-    completeSelectorFields(countryCode, gender);
-    signUpPage.submit();
-  }
-
-  public void completeSelectorFields(String countryCode, String gender) {
-    signUpPage.selectCountry(countryCode);
-    signUpPage.selectGender(gender);
-    signUpPage.selectAgreement();
-  }
-
-  public void completeInputFields() {
     String fullName = credentialsProvider.createTestName();
     String email = credentialsProvider.createTestEmail();
     String password = credentialsProvider.createTestPassword();
+    String countryCode = countryProvider.getRandomCountry();
+    String gender = genderProvider.getRandomGender();
+    String agreement = "agree";
 
+    completeInputFields(fullName, email, password);
+    completeSelectorFields(countryCode, gender, agreement);
+    signUpPage.submit();
+  }
+
+  public void completeSelectorFields(String countryCode, String gender, String agreement) {
+    signUpPage.selectCountry(countryCode);
+    signUpPage.selectGender(gender);
+    signUpPage.selectAgreement(agreement);
+  }
+
+  public void completeInputFields(String fullName, String email, String password) {
     signUpPage.enterFullName(fullName);
     signUpPage.enterEmail(email);
     signUpPage.enterPassword(password);

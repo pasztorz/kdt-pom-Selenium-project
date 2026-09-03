@@ -29,7 +29,7 @@ public class SignUpPageTest {
   }
 
   @Test
-  public void signUpWithValidCredentialsTest() {
+  public void signUpTest() {
     Navbar navbar = new Navbar(driver);
 
     signUpKeyword.openFromLoginPage();

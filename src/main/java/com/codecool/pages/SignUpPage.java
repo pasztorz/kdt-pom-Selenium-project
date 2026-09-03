@@ -14,7 +14,6 @@ public class SignUpPage extends Page {
   private static final String URL ="https://playground.qatools.dev/signup";
 
   protected SignUpLocator signUpLocator;
-  protected SignUpErrorLocator errorLocator;
   private final WebDriverWait wait;
 
   public SignUpPage(WebDriver driver) {
@@ -27,15 +26,20 @@ public class SignUpPage extends Page {
     signUpLocator.getSubmitButton().click();
   }
 
-  public void selectAgreement() {
-    clickSelector(signUpLocator.getAgreeSelector());
+  public void selectAgreement(String agreement) {
+    if (agreement.equals("agree")) clickSelector(signUpLocator.getAgreeSelector());
+    else clickSelector(signUpLocator.getRegistrationForm());
   }
 
   public void selectGender(String gender) {
-    String selector = "input[value='" + gender + "']";
-    WebElement selectedElement = signUpLocator.getGenderSelectorRow().findElement(By.cssSelector(selector));
 
-    clickSelector(selectedElement);
+    if (!gender.isEmpty()) {
+      String selector = "input[value='" + gender + "']";
+      WebElement selectedElement = signUpLocator.getGenderSelectorRow().findElement(By.cssSelector(selector));
+      clickSelector(selectedElement);
+    } else {
+      clickSelector(signUpLocator.getRegistrationForm());
+    }
   }
 
   public void selectCountry(String countryCode) {
