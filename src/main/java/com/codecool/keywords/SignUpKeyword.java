@@ -3,7 +3,7 @@ package com.codecool.keywords;
 import com.codecool.pages.LoginPage;
 import com.codecool.pages.SignUpPage;
 import com.codecool.service.GenderProvider;
-import com.codecool.service.ValidCountryProvider;
+import com.codecool.service.CountryProvider;
 import com.codecool.service.CredentialsProvider;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,7 @@ public class SignUpKeyword {
   private final LoginPage loginPage;
   private final SignUpPage signUpPage;
   private final CredentialsProvider credentialsProvider = new CredentialsProvider(FIRST_NAME, LAST_NAME);
-  private final ValidCountryProvider validCountryProvider = new ValidCountryProvider();
+  private final CountryProvider countryProvider = new CountryProvider();
   private final GenderProvider genderProvider = new GenderProvider();
 
   public SignUpKeyword(WebDriver driver) {
@@ -25,7 +25,7 @@ public class SignUpKeyword {
   }
 
   public void signUp() {
-    String countryCode = validCountryProvider.getRandomCountry();
+    String countryCode = countryProvider.getRandomCountry();
     String gender = genderProvider.getRandomGender();
 
     completeInputFields();

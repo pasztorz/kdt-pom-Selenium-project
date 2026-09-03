@@ -4,10 +4,10 @@ import com.codecool.model.CountryCode;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ValidCountryProvider {
+public class CountryProvider {
   private final CountryCode[] countryCodes = CountryCode.values();
 
-  public ValidCountryProvider() {
+  public CountryProvider() {
   }
 
   public String getRandomCountry() {

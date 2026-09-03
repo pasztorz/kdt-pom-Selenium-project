@@ -43,7 +43,7 @@ public class LoginPageTest {
   }
 
   @Test
-  public void loginValidCredentialsTest() {
+  public void loginWithValidCredentialsTest() {
     Dotenv dotenv = Dotenv.load();
     String email = dotenv.get("DEFAULT_TEST_USER_EMAIL");
     String password = dotenv.get("DEFAULT_TEST_USER_PASSWORD");
