@@ -17,7 +17,7 @@ public class SignUpErrorLocator {
   private WebElement passwordError;
 
   @FindBy(css = "div[data-testid='signup-confirm-error']")
-  private WebElement passwordConfirmError;
+  private WebElement confirmedPasswordError;
 
   @FindBy(css = "div[data-testid='signup-country-error']")
   private WebElement countryError;
@@ -26,7 +26,7 @@ public class SignUpErrorLocator {
   private WebElement genderError;
 
   @FindBy(css = "div[data-testid='signup-agree-error']")
-  private WebElement agreeError;
+  private WebElement agreementError;
 
   public SignUpErrorLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
@@ -44,8 +44,8 @@ public class SignUpErrorLocator {
     return passwordError;
   }
 
-  public WebElement getPasswordConfirmError() {
-    return passwordConfirmError;
+  public WebElement getConfirmedPasswordError() {
+    return confirmedPasswordError;
   }
 
   public WebElement getCountryError() {
@@ -56,7 +56,7 @@ public class SignUpErrorLocator {
     return genderError;
   }
 
-  public WebElement getAgreeError() {
-    return agreeError;
+  public WebElement getAgreementError() {
+    return agreementError;
   }
 }

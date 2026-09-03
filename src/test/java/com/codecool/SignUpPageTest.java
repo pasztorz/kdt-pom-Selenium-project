@@ -8,6 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -26,6 +28,17 @@ public class SignUpPageTest {
 
     HomeKeyword homeKeyword = new HomeKeyword(driver);
     homeKeyword.openHome();
+  }
+
+  @ParameterizedTest
+  @CsvFileSource(resources = "/testdata/invalid_reg_credentials.csv", numLinesToSkip = 1)
+  public void signUpWithErrorsTest(String field, String name, String email, String password,
+                                           String countryCode, String gender, String agreement, String expected) {
+    signUpKeyword.openFromLoginPage();
+    signUpKeyword.signUp(name, email, password, countryCode, gender, agreement);
+
+    Assertions.assertEquals(expected, signUpPage.getErrorMessage(field));
+    Assertions.assertTrue(signUpPage.isPageOpen("signup"));
   }
 
   @Test

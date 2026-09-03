@@ -14,12 +14,63 @@ public class SignUpPage extends Page {
   private static final String URL ="https://playground.qatools.dev/signup";
 
   protected SignUpLocator signUpLocator;
+  protected SignUpErrorLocator errorLocator;
   private final WebDriverWait wait;
 
   public SignUpPage(WebDriver driver) {
     super(driver, URL);
     this.signUpLocator = new SignUpLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+  }
+
+  public String getErrorMessage(String fieldName) {
+    String errorMessage = "";
+
+    switch (fieldName) {
+      case "name" -> errorMessage = getNameErrorText();
+      case "email" -> errorMessage = getEmailErrorText();
+      case "password" -> errorMessage = getPasswordErrorText();
+      case "confirmation" -> errorMessage = getConfirmationErrorText();
+      case "country" -> errorMessage = getCountryErrorText();
+      case "gender" -> errorMessage = getGenderErrorText();
+      case "agreement" -> errorMessage = getAgreementErrorText();
+    }
+    return errorMessage;
+  }
+
+  public String getAgreementErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getAgreementError()));
+    return errorLocator.getAgreementError().getAttribute("innerText");
+  }
+
+  public String getGenderErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getGenderError()));
+    return errorLocator.getGenderError().getAttribute("innerText");
+  }
+
+  public String getCountryErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getCountryError()));
+    return errorLocator.getCountryError().getAttribute("innerText");
+  }
+
+  public String getConfirmationErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getConfirmedPasswordError()));
+    return errorLocator.getConfirmedPasswordError().getAttribute("innerText");
+  }
+
+  public String getPasswordErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getPasswordError()));
+    return errorLocator.getPasswordError().getAttribute("innerText");
+  }
+
+  public String getEmailErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getEmailError()));
+    return errorLocator.getEmailError().getAttribute("innerText");
+  }
+
+  public String getNameErrorText() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getNameError()));
+    return errorLocator.getNameError().getAttribute("innerText");
   }
 
   public void submit() {
@@ -70,9 +121,9 @@ public class SignUpPage extends Page {
     signUpLocator.getEmailField().sendKeys(email);
   }
 
-  public void enterFullName(String fullName) {
+  public void enterFullName(String name) {
     wait.until(ExpectedConditions.visibilityOf(signUpLocator.getNameField()));
-    signUpLocator.getNameField().sendKeys(fullName);
+    signUpLocator.getNameField().sendKeys(name);
   }
 
   public void clickSignInBtn() {
