@@ -24,13 +24,6 @@ public class SignUpKeyword {
     this.signUpPage = new SignUpPage(driver);
   }
 
-  /// 3rd TEST DATA APPROACH
-  public void signUp(String fieldName, String input, String confirmation) {
-    signUpPage.enterInput(fieldName, input, confirmation);
-    signUpPage.submit();
-  }
-
-  /// ORIGINAL TEST DATA APPROACH
   public void signUp(String name, String email, String password, String confirmedPass,
                      String countryCode, String gender, String agreement) {
     signUpPage.enterFullName(name);
