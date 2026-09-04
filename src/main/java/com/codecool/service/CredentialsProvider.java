@@ -1,14 +1,15 @@
 package com.codecool.service;
 
-public class CredentialsProvider {
-  private static int ID_COUNTER = 1;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-  private final String  userID;
+/** PROVIDERS ARE FOR GENERATING NEW USER CREDENTIALS AND SELECTED ELEMENTS FOR REPEATED SIGN UP TESTING
+ * AND ENSURING ALL SIGNUP FIELDS ARE USED as part of these repeated tests reducing the chance of hidden bugs*/
+public class CredentialsProvider {
   private final String firstName;
   private final String lastName;
 
   public CredentialsProvider(String firstName, String lastName) {
-    this.userID = Integer.toString(ID_COUNTER + 1);
     this.firstName = firstName;
     this.lastName = lastName;
   }
@@ -17,14 +18,21 @@ public class CredentialsProvider {
     String firstLetter = firstName.substring(0, 1).toLowerCase();
     String secondLetter = lastName.substring(0, 1);
 
-    return firstLetter + secondLetter + userID + "@Register";
+    return firstLetter + secondLetter + "@" + getTimeStamp();
   }
 
   public String createTestEmail() {
-    return firstName.toLowerCase() + userID + "." + lastName.toLowerCase() + "@example.com";
+    return firstName.toLowerCase() + "." + lastName.toLowerCase() + getTimeStamp() + "@example.com";
   }
 
   public String createTestName() {
-    return firstName + userID + " " + lastName;
+    return firstName + " " + lastName;
+  }
+
+  public String getTimeStamp() {
+    LocalDateTime timeOfSignUp = LocalDateTime.now();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("MMddyy-hhmmss");
+
+    return timeOfSignUp.format(format);
   }
 }
