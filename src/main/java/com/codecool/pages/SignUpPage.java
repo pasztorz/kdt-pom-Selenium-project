@@ -24,6 +24,25 @@ public class SignUpPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  /// 3rd & 4th TEST DATA APPROACH (less complex ones) STARTS HERE (invalid_signup_credentials_v3.csv)
+  public void enterInput(String fieldName, String input, String confirmation) {
+
+    if (confirmation.isEmpty()) {
+      switch (fieldName) {
+        case "name" -> enterFullName(input);
+        case "email" -> enterEmail(input);
+        case "password" -> enterPassword(input);
+        case "confirmation" -> enterConfirmedPassword(input);
+        case "country" -> selectCountry(input);
+        case "gender" -> selectGender(input);
+        case "agreement" -> selectAgreement(input);
+      }
+    } else {
+      enterPassword(input);
+      enterConfirmedPassword(confirmation);
+    }
+  }
+
   /// 2nd TEST DATA APPROACH (2nd most complex) STARTS HERE (invalid_signup_credentials_v2.csv)
   public boolean isErrorDisplayed(String fieldName) {
     boolean isVisible = false;
