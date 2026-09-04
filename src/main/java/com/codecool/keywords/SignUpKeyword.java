@@ -30,6 +30,7 @@ public class SignUpKeyword {
     signUpPage.submit();
   }
 
+  /// ORIGINAL TEST DATA APPROACH
   public void signUp(String name, String email, String password, String confirmedPass,
                      String countryCode, String gender, String agreement) {
     signUpPage.enterFullName(name);
