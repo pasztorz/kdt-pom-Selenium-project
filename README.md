@@ -1,7 +1,7 @@
 
 ## About the Project
 
-This is a Test Automation practice project to improve my skills and knowledge and experiences on the hybrid use of Keyword Driven Testing approach and Page Object Model implemented by Java code using Selenium.
+This is a Test Automation project to improve my skills and knowledge and experiences on the hybrid use of Keyword Driven Testing approach and Page Object Model implemented in Java and using Selenium for automation.
 
 ## System Under Test (SUT)
 
