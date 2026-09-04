@@ -24,7 +24,7 @@ public class SignUpPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
-  /// 2ND TEST DATA APPROACH (2nd most complex) STARTS HERE (invalid_signup_credentials_v2.csv)
+  /// 2nd TEST DATA APPROACH (2nd most complex) STARTS HERE (invalid_signup_credentials_v2.csv)
   public boolean isErrorDisplayed(String fieldName) {
     boolean isVisible = false;
 
@@ -81,7 +81,7 @@ public class SignUpPage extends Page {
     return errorLocator.getNameError().isDisplayed();
   }
 
-  /// 1ST TEST DATA APPROACH (most complex) STARTS HERE (invalid_signup_credentials_v1.csv)
+  /// 1st TEST DATA APPROACH (most complex) STARTS HERE (invalid_signup_credentials_v1.csv)
   public String getErrorMessage(String fieldName) {
     String errorMessage = "";
 
