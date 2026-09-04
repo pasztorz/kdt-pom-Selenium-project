@@ -25,8 +25,8 @@ public class SignUpKeyword {
   }
 
   /// 3rd TEST DATA APPROACH
-  public void signUp(String input, String confirmation) {
-    signUpPage.enterInput(input, confirmation);
+  public void signUp(String fieldName, String input, String confirmation) {
+    signUpPage.enterInput(fieldName, input, confirmation);
     signUpPage.submit();
   }
 
