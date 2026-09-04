@@ -24,22 +24,64 @@ public class SignUpPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  /// 2ND TEST DATA APPROACH (2nd most complex) STARTS HERE (invalid_signup_credentials_v2.csv)
   public boolean isErrorDisplayed(String fieldName) {
     boolean isVisible = false;
 
     switch (fieldName) {
-      case "name" -> isVisible = errorLocator.getNameError().isDisplayed();
-      case "email" -> isVisible = errorLocator.getEmailError().isDisplayed();
-      case "password" -> isVisible = errorLocator.getPasswordError().isDisplayed();
-      case "confirmation" -> isVisible = errorLocator.getConfirmedPasswordError().isDisplayed();
-      case "country" -> isVisible = errorLocator.getCountryError().isDisplayed();
-      case "gender" -> isVisible = errorLocator.getGenderError().isDisplayed();
-      case "agreement" -> isVisible = errorLocator.getAgreementError().isDisplayed();
-      case "account" -> isVisible = errorLocator.getExistingAccountError().isDisplayed();
+      case "name" -> isVisible = hasNameError();
+      case "email" -> isVisible = hasEmailError();
+      case "password" -> isVisible = hasPasswordError();
+      case "confirmation" -> isVisible = hasConfirmedPasswordError();
+      case "country" -> isVisible = hasCountryError();
+      case "gender" -> isVisible = hasGenderError();
+      case "agreement" -> isVisible = hasAgreementError();
+      case "account" -> isVisible = hasAccountError();
     }
     return isVisible;
   }
 
+  public boolean hasAccountError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getExistingAccountError()));
+    return errorLocator.getExistingAccountError().isDisplayed();
+  }
+
+  public boolean hasAgreementError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getAgreementError()));
+    return errorLocator.getAgreementError().isDisplayed();
+  }
+
+  public boolean hasGenderError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getGenderError()));
+    return errorLocator.getGenderError().isDisplayed();
+  }
+
+  public boolean hasCountryError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getCountryError()));
+    return errorLocator.getCountryError().isDisplayed();
+  }
+
+  public boolean hasConfirmedPasswordError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getConfirmedPasswordError()));
+    return errorLocator.getConfirmedPasswordError().isDisplayed();
+  }
+
+  public boolean hasPasswordError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getPasswordError()));
+    return errorLocator.getPasswordError().isDisplayed();
+  }
+
+  public boolean hasEmailError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getEmailError()));
+    return errorLocator.getEmailError().isDisplayed();
+  }
+
+  public boolean hasNameError() {
+    wait.until(ExpectedConditions.visibilityOf(errorLocator.getNameError()));
+    return errorLocator.getNameError().isDisplayed();
+  }
+
+  /// 1ST TEST DATA APPROACH (most complex) STARTS HERE (invalid_signup_credentials_v1.csv)
   public String getErrorMessage(String fieldName) {
     String errorMessage = "";
 
