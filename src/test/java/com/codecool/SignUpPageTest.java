@@ -1,9 +1,11 @@
 package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
+import com.codecool.keywords.ProfileKeyword;
 import com.codecool.keywords.SignUpKeyword;
 import com.codecool.pages.HomePage;
 import com.codecool.pages.Navbar;
+import com.codecool.pages.ProfilePage;
 import com.codecool.pages.SignUpPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -43,7 +45,23 @@ public class SignUpPageTest {
   }
 
   @Test
-  void passwordIsNotExposedInUrlTest() {
+  public void passwordIsNotExposedInProfileAfterSignUpTest() {
+    Navbar navbar = new Navbar(driver);
+    ProfilePage profilePage = new ProfilePage(driver);
+    ProfileKeyword profileKeyword = new ProfileKeyword(driver);
+    String password = signUpKeyword.getUniquePassword();
+
+    signUpKeyword.openFromLoginPage();
+    signUpKeyword.signUp(password);
+
+    navbar.clickProfileButton();
+    profileKeyword.openProfileForm();
+
+    Assertions.assertFalse(profilePage.isPasswordDisplayed(password));
+  }
+
+  @Test
+  public void passwordIsNotExposedInUrlAfterSignUpTest() {
     String password = signUpKeyword.getUniquePassword();
 
     signUpKeyword.openFromLoginPage();

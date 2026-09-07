@@ -15,6 +15,7 @@ public class HomePage extends Page {
 
   public HomePage(WebDriver driver) {
     super(driver, URL);
+
     this.homeLocator = new HomeLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }

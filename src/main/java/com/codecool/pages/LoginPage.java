@@ -15,6 +15,7 @@ public class LoginPage extends Page {
 
   public LoginPage(WebDriver driver) {
     super(driver, URL);
+
     this.loginLocator = new LoginLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }

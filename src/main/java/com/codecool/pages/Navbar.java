@@ -16,6 +16,11 @@ public class Navbar {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public void clickProfileButton() {
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileBtn()));
+    navbarLocator.getProfileBtn().click();
+  }
+
   public boolean isProfileBtnDisplayed() {
     wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileBtn()));
     return navbarLocator.getProfileBtn().isDisplayed();
