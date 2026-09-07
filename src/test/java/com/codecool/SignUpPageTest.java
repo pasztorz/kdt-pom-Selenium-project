@@ -57,7 +57,7 @@ public class SignUpPageTest {
     navbar.clickProfileButton();
     profileKeyword.openProfileForm();
 
-    Assertions.assertFalse(profilePage.isPasswordDisplayed(password));
+    Assertions.assertFalse(profilePage.isPasswordExposed(password));
   }
 
   @Test

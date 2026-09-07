@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SignUpLocator {
 
-  @FindBy(css = ".form-card")
+  @FindBy(css = "form[data-testid='signup-form']")
   private WebElement registrationForm;
 
   @FindBy(id = "signup-name")

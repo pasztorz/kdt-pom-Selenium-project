@@ -18,16 +18,24 @@ public class ProfileLocator {
 
   @FindBys({
     @FindBy(css = ".card"),
-    @FindBy(tagName = "div")
-  })
-  private List<WebElement> profileFields;
+    @FindBy(tagName = "label")
+  }) private List<WebElement> profileLabels;
+
+  @FindBys({
+    @FindBy(css = ".card"),
+    @FindBy(tagName = "input")
+  }) private List<WebElement> profileInputFields;
 
   public ProfileLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 
-  public List<WebElement> getProfileFields() {
-    return profileFields;
+  public List<WebElement> getProfileInputFields() {
+    return profileInputFields;
+  }
+
+  public List<WebElement> getProfileLabels() {
+    return profileLabels;
   }
 
   public WebElement getProfileForm() {
