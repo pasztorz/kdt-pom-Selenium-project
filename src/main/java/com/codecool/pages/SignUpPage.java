@@ -24,6 +24,14 @@ public class SignUpPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public String getConfirmedPasswordInputType() {
+    return signUpLocator.getConfirmField().getAttribute("type");
+  }
+
+  public String getPasswordInputType() {
+    return signUpLocator.getPasswordField().getAttribute("type");
+  }
+
   public String getErrorMessage(String fieldName) {
     String errorMessage = "";
 
