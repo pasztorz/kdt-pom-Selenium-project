@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class HomePagePageTest {
+public class HomePageTest {
   private WebDriver driver;
   private HomePage homePage;
   private HomeKeyword homeKeyword;
@@ -27,7 +27,7 @@ public class HomePagePageTest {
   public void openHomeTest() {
     homeKeyword.openHome();
 
-    Assertions.assertTrue(homePage.isPageOpen("https://playground.qatools.dev"));
+    Assertions.assertTrue(homePage.currentUrlContains("https://playground.qatools.dev"));
   }
 
   @AfterEach

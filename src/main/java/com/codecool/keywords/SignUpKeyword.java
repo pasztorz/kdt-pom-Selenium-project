@@ -24,6 +24,16 @@ public class SignUpKeyword {
     this.signUpPage = new SignUpPage(driver);
   }
 
+  public void signUp(String password) {
+    String name = getUniqueName();
+    String email = getUniqueEmail();
+    String countryCode = generateCountry();
+    String gender = generateGender();
+    String agreement = "agree";
+
+    signUp(name, email, password, password, countryCode, gender, agreement);
+  }
+
   public void signUp(String name, String email, String password, String confirmedPass,
                      String countryCode, String gender, String agreement) {
     signUpPage.enterFullName(name);
@@ -37,14 +47,34 @@ public class SignUpKeyword {
   }
 
   public void signUp() {
-    String name = credentialsProvider.createTestName();
-    String email = credentialsProvider.createTestEmail();
-    String password = credentialsProvider.createTestPassword();
-    String countryCode = countryProvider.getRandomCountry();
-    String gender = genderProvider.getRandomGender();
+    String name = getUniqueName();
+    String email = getUniqueEmail();
+    String password = getUniquePassword();
+    String countryCode = generateCountry();
+    String gender = generateGender();
     String agreement = "agree";
 
     signUp(name, email, password, password, countryCode, gender, agreement);
+  }
+
+  public String generateGender() {
+    return genderProvider.getRandomGender();
+  }
+
+  public String generateCountry() {
+    return countryProvider.getRandomCountry();
+  }
+
+  public String getUniquePassword() {
+    return credentialsProvider.createTestPassword();
+  }
+
+  public String getUniqueEmail() {
+    return credentialsProvider.createTestEmail();
+  }
+
+  public String getUniqueName() {
+    return credentialsProvider.createTestName();
   }
 
   public void openFromLoginPage() {

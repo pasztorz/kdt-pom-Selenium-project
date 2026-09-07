@@ -5,7 +5,6 @@ import com.codecool.keywords.LoginKeyword;
 import com.codecool.pages.HomePage;
 import com.codecool.pages.LoginPage;
 import com.codecool.pages.Navbar;
-import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +38,7 @@ public class LoginPageTest {
     loginKeyword.login(email, password);
 
     Assertions.assertEquals(expected, loginPage.getErrorMessage(field));
-    Assertions.assertTrue(loginPage.isPageOpen("login"));
+    Assertions.assertTrue(loginPage.currentUrlContains("login"));
   }
 
   @Test
@@ -51,19 +50,19 @@ public class LoginPageTest {
     HomePage homePage = new HomePage(driver);
 
     Assertions.assertTrue(navbar.isLogoutDisplayed());
-    Assertions.assertTrue(homePage.isPageOpen("https://playground.qatools.dev"));
+    Assertions.assertTrue(homePage.currentUrlContains("https://playground.qatools.dev"));
   }
 
   @Test
   public void openWithSignUpPageSignInBtnTest() {
     loginKeyword.openFromSignUpPage();
-    Assertions.assertTrue(loginPage.isPageOpen("login"));
+    Assertions.assertTrue(loginPage.currentUrlContains("login"));
   }
 
   @Test
   public void openWithNavbarButtonTest() {
     loginKeyword.openFromNavbar();
-    Assertions.assertTrue(loginPage.isPageOpen("login"));
+    Assertions.assertTrue(loginPage.currentUrlContains("login"));
   }
 
   @AfterEach

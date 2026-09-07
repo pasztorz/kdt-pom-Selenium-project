@@ -2,6 +2,7 @@ package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.SignUpKeyword;
+import com.codecool.pages.HomePage;
 import com.codecool.pages.Navbar;
 import com.codecool.pages.SignUpPage;
 import org.junit.jupiter.api.AfterEach;
@@ -32,31 +33,42 @@ public class SignUpPageTest {
 
   @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_signup_credentials.csv", numLinesToSkip = 1)
-  public void signUpWithErrorsTest(String field, String name, String email, String password, String confirmation,
+  public void signUpFailsWithWrongAndMissingFieldsTest(String field, String name, String email, String password, String confirmation,
                                            String countryCode, String gender, String agreement, String expected) {
     signUpKeyword.openFromLoginPage();
     signUpKeyword.signUp(name, email, password, confirmation, countryCode, gender, agreement);
 
     Assertions.assertEquals(expected, signUpPage.getErrorMessage(field));
-    Assertions.assertTrue(signUpPage.isPageOpen("signup"));
+    Assertions.assertTrue(signUpPage.currentUrlContains("signup"));
   }
 
   @Test
-  public void signUpTest() {
+  void passwordIsNotExposedInUrlTest() {
+    String password = signUpKeyword.getUniquePassword();
+
+    signUpKeyword.openFromLoginPage();
+    signUpKeyword.signUp(password);
+
+    Assertions.assertFalse(signUpPage.currentUrlContains(password));
+  }
+
+  @Test
+  public void signUpWithValidFieldsTest() {
+    HomePage homePage = new HomePage(driver);
     Navbar navbar = new Navbar(driver);
 
     signUpKeyword.openFromLoginPage();
     signUpKeyword.signUp();
 
-    Assertions.assertTrue(signUpPage.isPageOpen("https://playground.qatools.dev/"));
     Assertions.assertTrue(navbar.isLogoutDisplayed());
     Assertions.assertTrue(navbar.isProfileBtnDisplayed());
+    Assertions.assertTrue(homePage.currentUrlEquals("https://playground.qatools.dev/"));
   }
 
   @Test
   public void openFromLoginPageWithCreateButtonTest() {
     signUpKeyword.openFromLoginPage();
-    Assertions.assertTrue(signUpPage.isPageOpen("/signup"));
+    Assertions.assertTrue(signUpPage.currentUrlContains("/signup"));
   }
 
   @AfterEach
