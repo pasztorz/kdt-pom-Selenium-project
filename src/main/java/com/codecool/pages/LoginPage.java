@@ -20,6 +20,11 @@ public class LoginPage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public boolean errorMessageFieldContainsPassword(String fieldName, String password) {
+    String errorMessage = getErrorMessage(fieldName);
+    return errorMessage.contains(password);
+  }
+
   public String getPasswordInputType() {
     wait.until(ExpectedConditions.visibilityOf(loginLocator.getPasswordField()));
     System.out.println(loginLocator.getPasswordField().getAttribute("type"));

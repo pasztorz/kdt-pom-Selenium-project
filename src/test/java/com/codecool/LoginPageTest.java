@@ -34,6 +34,17 @@ public class LoginPageTest {
   }
 
   @ParameterizedTest
+  @CsvFileSource(resources = "/testdata/invalid_for_password_exposure_in_errors.csv", numLinesToSkip = 1)
+  public void passwordIsNotExposedInErrorMessagesTest(String field, String invalidPassword) {
+    String validPassword = LoginKeyword.getPASSWORD();
+
+    loginKeyword.openFromNavbar();
+    loginKeyword.login(invalidPassword);
+
+    Assertions.assertFalse(loginPage.errorMessageFieldContainsPassword(field, validPassword));
+  }
+
+  @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_login_credentials.csv", numLinesToSkip = 1)
   public void loginFailsWithWrongAndMissingFieldsTest(String field, String email, String password, String expected) {
     loginKeyword.openFromNavbar();
