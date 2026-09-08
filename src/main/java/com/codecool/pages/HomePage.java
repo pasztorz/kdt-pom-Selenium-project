@@ -6,9 +6,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class HomePage extends Page {
-  private static final String URL = "https://playground.qatools.dev";
+  private static final String URL = "https://playground.qatools.dev/";
 
   private final HomeLocator homeLocator;
   private final WebDriverWait wait;
@@ -18,6 +19,10 @@ public class HomePage extends Page {
 
     this.homeLocator = new HomeLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+  }
+
+  public boolean currentUrlEquals() {
+    return Objects.equals(getDriver().getCurrentUrl(), URL);
   }
 
   public void skipWelcome() {

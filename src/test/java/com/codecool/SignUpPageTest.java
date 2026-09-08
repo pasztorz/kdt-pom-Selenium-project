@@ -55,7 +55,7 @@ public class SignUpPageTest {
   }
 
   @Test
-  public void passwordIsNotExposedInProfileButtonAfterSignUpTest() {
+  public void passwordIsNotExposedInNavigationButtonsAfterSignUpTest() {
     Navbar navbar = new Navbar(driver);
     String password = signUpKeyword.getUniquePassword();
 
@@ -63,6 +63,7 @@ public class SignUpPageTest {
     signUpKeyword.signUp(password);
 
     Assertions.assertFalse(navbar.profileButtonContains(password));
+    Assertions.assertFalse(navbar.logOutButtonContains(password));
   }
 
   @Test
@@ -97,9 +98,9 @@ public class SignUpPageTest {
     signUpKeyword.openFromLoginPage();
     signUpKeyword.signUp();
 
-    Assertions.assertTrue(navbar.isLogoutDisplayed());
+    Assertions.assertTrue(navbar.isLogOutDisplayed());
     Assertions.assertTrue(navbar.isProfileBtnDisplayed());
-    Assertions.assertTrue(homePage.currentUrlEquals("https://playground.qatools.dev/"));
+    Assertions.assertTrue(homePage.currentUrlEquals());
   }
 
   @Test

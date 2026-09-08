@@ -16,6 +16,19 @@ public class Navbar {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public void clickLogOutButton() {
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getLogOutButton()));
+    navbarLocator.getLogOutButton().click();
+  }
+
+  public boolean logOutButtonContains(String password) {
+    return getLogOutButtonText().contains(password);
+  }
+
+  public String getLogOutButtonText() {
+    return navbarLocator.getLogOutButton().getAttribute("innerText");
+  }
+
   public boolean profileButtonContains(String password) {
     return getProfileButtonText().contains(password);
   }
@@ -35,7 +48,7 @@ public class Navbar {
     return navbarLocator.getProfileButton().isDisplayed();
   }
 
-  public boolean isLogoutDisplayed() {
+  public boolean isLogOutDisplayed() {
     wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getLogOutButton()));
     return navbarLocator.getLogOutButton().isDisplayed();
   }

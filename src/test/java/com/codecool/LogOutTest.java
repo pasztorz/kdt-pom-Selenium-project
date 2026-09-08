@@ -1,6 +1,8 @@
 package com.codecool;
 
 import com.codecool.keywords.HomeKeyword;
+import com.codecool.keywords.LoginKeyword;
+import com.codecool.keywords.NavbarKeyword;
 import com.codecool.pages.HomePage;
 import com.codecool.pages.Navbar;
 import org.junit.jupiter.api.AfterEach;
@@ -10,27 +12,32 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class HomePageTest {
+public class LogOutTest {
   private WebDriver driver;
-  private HomePage homePage;
-  private HomeKeyword homeKeyword;
+  private Navbar navbar;
+  private NavbarKeyword navbarKeyword;
 
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
-    homePage = new HomePage(driver);
-    homeKeyword = new HomeKeyword(driver);
+    navbar = new Navbar(driver);
+    navbarKeyword = new NavbarKeyword(driver);
 
     driver.manage().window().maximize();
+
+    HomeKeyword homeKeyword = new HomeKeyword(driver);
+    homeKeyword.openHome();
   }
 
   @Test
-  public void openHomeBeforeLoginTest() {
-    Navbar navbar = new Navbar(driver);
+  public void logOutWithButtonTest() {
+    LoginKeyword loginKeyword = new LoginKeyword(driver);
+    HomePage homePage = new HomePage(driver);
 
-    homeKeyword.openHome();
+    loginKeyword.openFromNavbar();
+    loginKeyword.login();
+    navbarKeyword.logOut();
 
-    Assertions.assertTrue(navbar.isHomeButtonDisplayed());
     Assertions.assertTrue(navbar.isLoginDisplayed());
     Assertions.assertTrue(homePage.currentUrlEquals());
   }

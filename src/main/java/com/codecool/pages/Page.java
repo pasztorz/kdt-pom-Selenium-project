@@ -16,15 +16,15 @@ public abstract class Page {
     this.url = url;
   }
 
-  public boolean currentUrlEquals(String url) {
-    return Objects.equals(driver.getCurrentUrl(), url);
-  }
-
   public boolean currentUrlContains(String uniqueUrlPart) {
     return Objects.requireNonNull(driver.getCurrentUrl()).contains(uniqueUrlPart);
   }
 
   public void openPage () {
     driver.get(url);
+  }
+
+  public WebDriver getDriver() {
+    return driver;
   }
 }
