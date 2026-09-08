@@ -34,7 +34,7 @@ public class LoginPageTest {
   }
 
   @ParameterizedTest
-  @CsvFileSource(resources = "/testdata/invalid_for_password_exposure_in_errors.csv", numLinesToSkip = 1)
+  @CsvFileSource(resources = "/testdata/invalid_logins_for_password_exposure_in_errors.csv", numLinesToSkip = 1)
   public void passwordIsNotExposedInErrorMessagesTest(String field, String invalidPassword) {
     String validPassword = LoginKeyword.getPASSWORD();
 
