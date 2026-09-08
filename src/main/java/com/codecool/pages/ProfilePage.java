@@ -23,7 +23,7 @@ public class ProfilePage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
-  public boolean isPasswordExposed(String password) {
+  public boolean profilePageContains(String password) {
     List<String> formElementsTextList = getElementTextList();
     return formElementsTextList.contains(password);
   }

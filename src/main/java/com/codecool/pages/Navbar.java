@@ -16,6 +16,15 @@ public class Navbar {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public boolean profileButtonContains(String password) {
+    return getProfileButtonText().contains(password);
+  }
+
+  public String getProfileButtonText() {
+    wait.until(ExpectedConditions.visibilityOf(navbarLocator.getProfileBtn()));
+    return navbarLocator.getProfileBtn().getAttribute("innerText");
+  }
+
   public void clickProfileButton() {
     wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileBtn()));
     navbarLocator.getProfileBtn().click();
