@@ -45,11 +45,13 @@ public class SignUpPageTest {
   }
 
   @Test
-  public void passwordInputsHavePasswordTypeTest() {
+  public void passwordInputFieldsHavePasswordTypeTest() {
+    String expected = "password";
+
     signUpKeyword.openFromLoginPage();
 
-    Assertions.assertEquals("password", signUpPage.getPasswordInputType());
-    Assertions.assertEquals("password", signUpPage.getConfirmedPasswordInputType());
+    Assertions.assertEquals(expected, signUpPage.getPasswordInputType());
+    Assertions.assertEquals(expected, signUpPage.getConfirmedPasswordInputType());
   }
 
   @Test

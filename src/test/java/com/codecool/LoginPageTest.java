@@ -44,6 +44,13 @@ public class LoginPageTest {
   }
 
   @Test
+  public void passwordInputFieldHasPasswordTypeTest() {
+    loginKeyword.openFromNavbar();
+
+    Assertions.assertEquals("password", loginPage.getPasswordInputType());
+  }
+
+  @Test
   public void passwordIsNotExposedInProfileAfterLoginTesT() {
     ProfilePage profilePage = new ProfilePage(driver);
     ProfileKeyword profileKeyword = new ProfileKeyword(driver);
