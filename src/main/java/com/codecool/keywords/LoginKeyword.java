@@ -21,6 +21,14 @@ public class LoginKeyword {
     this.loginPage = new LoginPage(driver);
   }
 
+  public void login(String password) {
+    login(EMAIL, password);
+  }
+
+  public static String getPASSWORD() {
+    return PASSWORD;
+  }
+
   public void login(String email, String password) {
     loginPage.enterEmail(email);
     loginPage.enterPassword(password);

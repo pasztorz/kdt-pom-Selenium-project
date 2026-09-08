@@ -65,7 +65,6 @@ public class SignUpPageTest {
 
   @Test
   public void passwordIsNotExposedInProfileAfterSignUpTest() {
-    Navbar navbar = new Navbar(driver);
     ProfilePage profilePage = new ProfilePage(driver);
     ProfileKeyword profileKeyword = new ProfileKeyword(driver);
     String password = signUpKeyword.getUniquePassword();
@@ -73,7 +72,6 @@ public class SignUpPageTest {
     signUpKeyword.openFromLoginPage();
     signUpKeyword.signUp(password);
 
-    navbar.clickProfileButton();
     profileKeyword.openProfileForm();
 
     Assertions.assertFalse(profilePage.profilePageContains(password));
@@ -90,7 +88,7 @@ public class SignUpPageTest {
   }
 
   @Test
-  public void signUpWithValidFieldsTest() {
+  public void signUpWithValidFieldContentTest() {
     HomePage homePage = new HomePage(driver);
     Navbar navbar = new Navbar(driver);
 

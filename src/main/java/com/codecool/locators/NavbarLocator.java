@@ -7,6 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class NavbarLocator {
 
+  @FindBy(css = ".navbar-brand-main")
+  private WebElement homeButton;
+
   @FindBy(css = ".btn.nav-cta")
   private WebElement signInButton;
 
@@ -14,10 +17,14 @@ public class NavbarLocator {
   private WebElement logOutButton;
 
   @FindBy(css = ".nav-link[data-testid='nav-profile']")
-  private WebElement profileBtn;
+  private WebElement profileButton;
 
   public NavbarLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
+  }
+
+  public WebElement getHomeButton() {
+    return homeButton;
   }
 
   public WebElement getSignInButton() {
@@ -28,7 +35,7 @@ public class NavbarLocator {
     return logOutButton;
   }
 
-  public WebElement getProfileBtn() {
-    return profileBtn;
+  public WebElement getProfileButton() {
+    return profileButton;
   }
 }

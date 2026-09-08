@@ -21,23 +21,33 @@ public class Navbar {
   }
 
   public String getProfileButtonText() {
-    wait.until(ExpectedConditions.visibilityOf(navbarLocator.getProfileBtn()));
-    return navbarLocator.getProfileBtn().getAttribute("innerText");
+    wait.until(ExpectedConditions.visibilityOf(navbarLocator.getProfileButton()));
+    return navbarLocator.getProfileButton().getAttribute("innerText");
   }
 
   public void clickProfileButton() {
-    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileBtn()));
-    navbarLocator.getProfileBtn().click();
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileButton()));
+    navbarLocator.getProfileButton().click();
   }
 
   public boolean isProfileBtnDisplayed() {
-    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileBtn()));
-    return navbarLocator.getProfileBtn().isDisplayed();
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getProfileButton()));
+    return navbarLocator.getProfileButton().isDisplayed();
   }
 
   public boolean isLogoutDisplayed() {
     wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getLogOutButton()));
     return navbarLocator.getLogOutButton().isDisplayed();
+  }
+
+  public boolean isLoginDisplayed() {
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getSignInButton()));
+    return navbarLocator.getSignInButton().isDisplayed();
+  }
+
+  public boolean isHomeButtonDisplayed() {
+    wait.until(ExpectedConditions.elementToBeClickable(navbarLocator.getHomeButton()));
+    return navbarLocator.getHomeButton().isDisplayed();
   }
 
   public void clickNavbarSignInBtn() {
