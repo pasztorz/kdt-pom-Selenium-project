@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ClinicSubNavbarLocator {
 
-  @FindBy(className = "clinic-subnav-links")
+  @FindBy(css = "nav[aria-label='Clinic navigation']")
   private WebElement links;
 
   @FindBys({

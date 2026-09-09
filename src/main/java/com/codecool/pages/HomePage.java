@@ -21,6 +21,11 @@ public class HomePage extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public void clickClinicButton() {
+    wait.until(ExpectedConditions.elementToBeClickable(homeLocator.getClinicButton()));
+    homeLocator.getClinicButton().click();
+  }
+
   public boolean currentUrlEquals() {
     return Objects.equals(getDriver().getCurrentUrl(), URL);
   }

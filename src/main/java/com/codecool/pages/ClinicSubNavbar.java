@@ -26,7 +26,14 @@ public class ClinicSubNavbar {
 
   public boolean containsMyAppointments() {
     List<String> linkButtonsTextList = getLinkButtonsTexts();
-    return linkButtonsTextList.contains("My appointment");
+    String appointmentsButtonText = getAppointmentsButtonText();
+
+    return linkButtonsTextList.contains(appointmentsButtonText);
+  }
+
+  public String getAppointmentsButtonText() {
+    System.out.println(locator.getNavbarAppointmentsBtn().getText());
+    return locator.getNavbarAppointmentsBtn().getText();
   }
 
   public List<String> getLinkButtonsTexts() {
