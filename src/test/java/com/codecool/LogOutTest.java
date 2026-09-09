@@ -34,14 +34,26 @@ public class LogOutTest {
   }
 
   @Test
-  public void logOutWithButtonTerminatesAccessToAppointmentsTest() {
+  public void logOutWithButtonTerminatesAccessToAppointmentsOnClinicHomeTest() {
     ClinicKeyword clinicKeyword = new ClinicKeyword(driver);
-    ClinicSubNavbar clinicSubNavbar = new ClinicSubNavbar(driver);
+    ClinicHome clinicHome = new ClinicHome(driver);
 
     navbarKeyword.logOut();
     clinicKeyword.openClinicWithNavButton();
 
-    Assertions.assertFalse(clinicSubNavbar.containsMyAppointments());
+    Assertions.assertFalse(clinicHome.hasButtonWithText("My appointments"));
+  }
+
+  @Test
+  public void logOutWithButtonTerminatesAccessToAppointmentsInNavbarTest() {
+    ClinicKeyword clinicKeyword = new ClinicKeyword(driver);
+    ClinicSubNavbar clinicSubNavbar = new ClinicSubNavbar(driver);
+    ClinicHome clinicHome = new ClinicHome(driver);
+
+    navbarKeyword.logOut();
+    clinicKeyword.openClinicWithNavButton();
+
+    Assertions.assertFalse(clinicSubNavbar.hasButtonWithText("My appointments"));
   }
 
   @Test

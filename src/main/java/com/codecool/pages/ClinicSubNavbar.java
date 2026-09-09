@@ -24,23 +24,18 @@ public class ClinicSubNavbar {
     locator.getNavbarAppointmentsBtn().click();
   }
 
-  public boolean containsMyAppointments() {
-    List<String> linkButtonsTextList = getLinkButtonsTexts();
-    String appointmentsButtonText = getAppointmentsButtonText();
-
-    return linkButtonsTextList.contains(appointmentsButtonText);
+  public boolean hasButtonWithText(String buttonText) {
+    List<String> linkButtonsTextList = getLinkButtonTextList();
+    return linkButtonsTextList.contains(buttonText);
   }
 
-  public String getAppointmentsButtonText() {
-    System.out.println(locator.getNavbarAppointmentsBtn().getText());
-    return locator.getNavbarAppointmentsBtn().getText();
-  }
-
-  public List<String> getLinkButtonsTexts() {
-    wait.until(ExpectedConditions.visibilityOf(locator.getLinks()));
+  public List<String> getLinkButtonTextList() {
+    List<WebElement> linkButtonList = locator.getLinkButtonList();
     List<String> linkButtonsTextList = new ArrayList<>();
 
-    for (WebElement element : locator.getLinkButtonList()) {
+    wait.until(ExpectedConditions.visibilityOf(locator.getLinks()));
+
+    for (WebElement element : linkButtonList) {
       String buttonText = element.getText();
       linkButtonsTextList.add(buttonText);
     }
