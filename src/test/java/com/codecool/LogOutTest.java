@@ -3,9 +3,7 @@ package com.codecool;
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.LoginKeyword;
 import com.codecool.keywords.NavbarKeyword;
-import com.codecool.pages.ClinicHome;
-import com.codecool.pages.HomePage;
-import com.codecool.pages.Navbar;
+import com.codecool.pages.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,7 +40,7 @@ public class LogOutTest {
     navbarKeyword.logOut();
     clinicKeyword.openClinic();
 
-    Assertions.assertTrue(clinicSubNavbar.appointmentsUnavailable());
+    Assertions.assertFalse(clinicSubNavbar.containsMyAppointments());
   }
 
   @Test
