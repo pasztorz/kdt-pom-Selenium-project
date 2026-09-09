@@ -37,7 +37,7 @@ public class LogOutTest {
   @Test
   public void logOutWithButtonTerminatesAccessToAppointmentsTest() {
     ClinicKeyword clinicKeyword = new ClinicKeyword(driver);
-    ClinicHome clinicHome = new ClinicHome(driver);
+    ClinicSubNavbar clinicSubNavbar = new ClinicSubNavbar(driver);
 
     navbarKeyword.logOut();
     clinicKeyword.openClinic();
