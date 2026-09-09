@@ -1,5 +1,6 @@
 package com.codecool.pages;
 
+import com.codecool.locators.ClinicSubNavbarLocator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,13 +26,13 @@ public class ClinicSubNavbar {
 
   public List<String> getLinkButtonsTexts() {
     wait.until(ExpectedConditions.visibilityOf(locator.getLinks()));
-    List<String> subNavbarLinkButtonTextList = new ArrayList<>();
+    List<String> linkButtonsTextList = new ArrayList<>();
 
-    for (WebElement element : locator.getLinkButtonList) {
+    for (WebElement element : locator.getLinkButtonList()) {
       String buttonText = element.getText();
-      subNavbarLinkButtonTextList.add(buttonText);
+      linkButtonsTextList.add(buttonText);
     }
 
-    return subNavbarLinkButtonTextList;
+    return linkButtonsTextList;
   }
 }
