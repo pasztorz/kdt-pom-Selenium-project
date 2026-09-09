@@ -3,6 +3,7 @@ package com.codecool;
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.LoginKeyword;
 import com.codecool.keywords.NavbarKeyword;
+import com.codecool.pages.ClinicHome;
 import com.codecool.pages.HomePage;
 import com.codecool.pages.Navbar;
 import org.junit.jupiter.api.AfterEach;
@@ -31,6 +32,17 @@ public class LogOutTest {
     homeKeyword.openHome();
     loginKeyword.openFromNavbar();
     loginKeyword.login();
+  }
+
+  @Test
+  public void logOutWithButtonTerminatesAccessToAppointmentsTest() {
+    ClinicKeyword clinicKeyword = new ClinicKeyword(driver);
+    ClinicHome clinicHome = new ClinicHome(driver);
+
+    navbarKeyword.logOut();
+    clinicKeyword.openClinic();
+
+    Assertions.assertTrue(clinicSubNavbar.appointmentsUnavailable());
   }
 
   @Test
