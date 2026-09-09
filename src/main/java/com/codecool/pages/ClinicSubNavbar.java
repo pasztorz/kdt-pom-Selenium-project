@@ -19,6 +19,11 @@ public class ClinicSubNavbar {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  public void clickNavbarAppointmentsBtn() {
+    wait.until(ExpectedConditions.elementToBeClickable(locator.getNavbarAppointmentsBtn()));
+    locator.getNavbarAppointmentsBtn().click();
+  }
+
   public boolean containsMyAppointments() {
     List<String> linkButtonsTextList = getLinkButtonsTexts();
     return linkButtonsTextList.contains("My appointment");

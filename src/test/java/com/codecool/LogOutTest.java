@@ -1,5 +1,6 @@
 package com.codecool;
 
+import com.codecool.keywords.ClinicKeyword;
 import com.codecool.keywords.HomeKeyword;
 import com.codecool.keywords.LoginKeyword;
 import com.codecool.keywords.NavbarKeyword;
@@ -38,7 +39,7 @@ public class LogOutTest {
     ClinicSubNavbar clinicSubNavbar = new ClinicSubNavbar(driver);
 
     navbarKeyword.logOut();
-    clinicKeyword.openClinic();
+    clinicKeyword.openClinicWithNavButton();
 
     Assertions.assertFalse(clinicSubNavbar.containsMyAppointments());
   }

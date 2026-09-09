@@ -19,6 +19,7 @@ public class SignUpPage extends Page {
 
   public SignUpPage(WebDriver driver) {
     super(driver, URL);
+
     this.signUpLocator = new SignUpLocator(driver);
     this.errorLocator = new SignUpErrorLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));

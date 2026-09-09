@@ -19,6 +19,12 @@ public class ClinicSubNavbarLocator {
   })
   List<WebElement> linkButtonList;
 
+  @FindBy(css = ".clinic-subnav-link[data-testid='clinic-nav-doctors']")
+  private WebElement navbarFindDoctorBtn;
+
+  @FindBy(css = ".clinic-subnav-link[data-testid='clinic-nav-appointments']")
+  private WebElement navbarAppointmentsBtn;
+
   public ClinicSubNavbarLocator(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
@@ -29,5 +35,13 @@ public class ClinicSubNavbarLocator {
 
   public List<WebElement> getLinkButtonList() {
     return linkButtonList;
+  }
+
+  public WebElement getNavbarFindDoctorBtn() {
+    return navbarFindDoctorBtn;
+  }
+
+  public WebElement getNavbarAppointmentsBtn() {
+    return navbarAppointmentsBtn;
   }
 }
