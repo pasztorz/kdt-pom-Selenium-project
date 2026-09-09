@@ -26,16 +26,17 @@ public class LogOutTest {
     driver.manage().window().maximize();
 
     HomeKeyword homeKeyword = new HomeKeyword(driver);
+    LoginKeyword loginKeyword = new LoginKeyword(driver);
+
     homeKeyword.openHome();
+    loginKeyword.openFromNavbar();
+    loginKeyword.login();
   }
 
   @Test
   public void logOutWithButtonTest() {
-    LoginKeyword loginKeyword = new LoginKeyword(driver);
     HomePage homePage = new HomePage(driver);
 
-    loginKeyword.openFromNavbar();
-    loginKeyword.login();
     navbarKeyword.logOut();
 
     Assertions.assertTrue(navbar.isLoginDisplayed());
