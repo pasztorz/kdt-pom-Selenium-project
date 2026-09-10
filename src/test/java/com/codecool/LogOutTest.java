@@ -75,6 +75,9 @@ public class LogOutTest {
     browserKeyword.navigateBack();
     browserKeyword.navigateBack();
 
+    /// assertion bullshit !!!
+    /// this assertion would even fail in case of proper functioning - because of time exception !!!
+    /// the only working one could be at this stage the navbar `div` and `a` elements' list size comparison !!!
     Assertions.assertFalse(navbar.hasButtonWithText(profileButtonText));
   }
 
