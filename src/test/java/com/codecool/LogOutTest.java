@@ -1,6 +1,7 @@
 package com.codecool;
 
 import com.codecool.keywords.*;
+import com.codecool.model.ButtonType;
 import com.codecool.pages.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LogOutTest {
   private WebDriver driver;
@@ -18,6 +18,10 @@ public class LogOutTest {
   private BrowserKeyword browserKeyword;
   private HomePage homePage;
   private Navbar navbar;
+  private ClinicHome clinicHome;
+  private ClinicSubNavbar clinicSubNavbar;
+
+  private final String appointmentsButtonText = ButtonType.APPOINTMENTS.getText();
 
   @BeforeEach
   void setUp() {
@@ -27,6 +31,8 @@ public class LogOutTest {
     browserKeyword = new BrowserKeyword(driver);
     navbar = new Navbar(driver);
     homePage = new HomePage(driver);
+    clinicHome = new ClinicHome(driver);
+    clinicSubNavbar = new ClinicSubNavbar(driver);
 
     driver.manage().window().maximize();
 
@@ -39,20 +45,41 @@ public class LogOutTest {
   }
 
   @Test
-  public void leavingLoggedInPageInBrowserBringsBackToLoggedOutHomeAfterReturningTest() {
-    String buttonText = navbar.getProfileButtonText();
-
+  public void leavingLoggedInPageInBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
     browserKeyword.navigateToIndifferentWebPageInBrowser();
     browserKeyword.navigateToIndifferentWebPageInBrowser();
     browserKeyword.navigateBack();
     browserKeyword.navigateBack();
 
-    Assertions.assertTrue(homePage.currentUrlEquals());
-    Assertions.assertFalse(navbar.hasButtonWithText(buttonText));
+    Assertions.assertFalse(clinicHome.hasButtonWithText(appointmentsButtonText));
   }
 
   @Test
-  public void closingNoIncognitoBrowserTerminatesAccessToAppointmentsOnClinicHomeTest() {
+  public void leavingLoggedInPageInBrowserTerminatesAppointmentsAccessInNavbarTest() {
+    browserKeyword.navigateToIndifferentWebPageInBrowser();
+    browserKeyword.navigateToIndifferentWebPageInBrowser();
+    browserKeyword.navigateBack();
+    browserKeyword.navigateBack();
+
+    clinicKeyword.openClinicFromHomeWithClinicButton();
+
+    Assertions.assertFalse(clinicSubNavbar.hasButtonWithText(appointmentsButtonText));
+  }
+
+  @Test
+  public void leavingLoggedInPageInBrowserBringsBackToLoggedOutHomeAfterReturningTest() {
+    String profileButtonText = navbar.getProfileButtonText();
+
+    browserKeyword.navigateToIndifferentWebPageInBrowser();
+    browserKeyword.navigateToIndifferentWebPageInBrowser();
+    browserKeyword.navigateBack();
+    browserKeyword.navigateBack();
+
+    Assertions.assertFalse(navbar.hasButtonWithText(profileButtonText));
+  }
+
+  @Test
+  public void closingNoIncognitoBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
     newDriver = browserKeyword.createPersistentChromeSession();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -62,11 +89,11 @@ public class LogOutTest {
     newHomeKeyword.openHomeWithoutPopUp();
     newClinicKeyword.openClinicFromHomeWithClinicButton();
 
-    Assertions.assertFalse(newClinicHome.hasButtonWithText("My appointments"));
+    Assertions.assertFalse(newClinicHome.hasButtonWithText(appointmentsButtonText));
   }
 
   @Test
-  public void closingNoIncognitoBrowserTerminatesAccessToAppointmentsInNavbarTest() {
+  public void closingNoIncognitoBrowserTerminatesAppointmentsAccessInNavbarTest() {
     newDriver = browserKeyword.createPersistentChromeSession();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -76,7 +103,7 @@ public class LogOutTest {
     newHomeKeyword.openHomeWithoutPopUp();
     newClinicKeyword.openClinicFromHomeWithClinicButton();
 
-    Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText("My appointments"));
+    Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText(appointmentsButtonText));
   }
 
   @Test
@@ -94,7 +121,7 @@ public class LogOutTest {
   }
 
   @Test
-  public void closingIncognitoBrowserTerminatesAccessToAppointmentsOnClinicHomeTest() {
+  public void closingIncognitoBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
     newDriver = browserKeyword.createFreshChromeSession();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -104,11 +131,11 @@ public class LogOutTest {
     newHomeKeyword.openHomeWithWelcomePopUp();
     newClinicKeyword.openClinicFromHomeWithClinicButton();
 
-    Assertions.assertFalse(newClinicHome.hasButtonWithText("My appointments"));
+    Assertions.assertFalse(newClinicHome.hasButtonWithText(appointmentsButtonText));
   }
 
   @Test
-  public void closingIncognitoBrowserTerminatesAccessToAppointmentsInNavbarTest() {
+  public void closingIncognitoBrowserTerminatesAppointmentsAccessInNavbarTest() {
     newDriver = browserKeyword.createFreshChromeSession();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -118,7 +145,7 @@ public class LogOutTest {
     newHomeKeyword.openHomeWithWelcomePopUp();
     newClinicKeyword.openClinicFromHomeWithClinicButton();
 
-    Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText("My appointments"));
+    Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText(appointmentsButtonText));
   }
 
   @Test
@@ -136,23 +163,19 @@ public class LogOutTest {
   }
 
   @Test
-  public void logOutWithButtonTerminatesAccessToAppointmentsOnClinicHomeTest() {
-    ClinicHome clinicHome = new ClinicHome(driver);
-
+  public void logOutWithButtonTerminatesAppointmentsAccessOnClinicHomeTest() {
     navbarKeyword.logOut();
     clinicKeyword.openClinicFromHomeWithClinicButton();
 
-    Assertions.assertFalse(clinicHome.hasButtonWithText("My appointments"));
+    Assertions.assertFalse(clinicHome.hasButtonWithText(appointmentsButtonText));
   }
 
   @Test
-  public void logOutWithButtonTerminatesAccessToAppointmentsInNavbarTest() {
-    ClinicSubNavbar clinicSubNavbar = new ClinicSubNavbar(driver);
-
+  public void logOutWithButtonTerminatesAppointmentsAccessInNavbarTest() {
     navbarKeyword.logOut();
     clinicKeyword.openClinicFromHomeWithClinicButton();
 
-    Assertions.assertFalse(clinicSubNavbar.hasButtonWithText("My appointments"));
+    Assertions.assertFalse(clinicSubNavbar.hasButtonWithText(appointmentsButtonText));
   }
 
   @Test

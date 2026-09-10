@@ -1,6 +1,7 @@
 package com.codecool.pages;
 
 import com.codecool.locators.ClinicSubNavbarLocator;
+import com.codecool.model.ButtonType;
 import com.codecool.model.Visible;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
