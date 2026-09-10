@@ -16,7 +16,7 @@ public class ClinicKeyword {
     this.homePage = new HomePage(driver);
   }
 
-  public void openClinicWithNavButton() {
+  public void openClinicFromHomeWithClinicButton() {
     homePage.clickClinicButton();
   }
 }

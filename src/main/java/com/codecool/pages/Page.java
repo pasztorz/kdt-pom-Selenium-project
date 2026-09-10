@@ -27,4 +27,8 @@ public abstract class Page {
   public WebDriver getDriver() {
     return driver;
   }
+
+  public String getUrl() {
+    return url;
+  }
 }
