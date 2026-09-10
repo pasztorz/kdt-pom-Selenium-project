@@ -1,9 +1,6 @@
 package com.codecool;
 
-import com.codecool.keywords.ClinicKeyword;
-import com.codecool.keywords.HomeKeyword;
-import com.codecool.keywords.LoginKeyword;
-import com.codecool.keywords.NavbarKeyword;
+import com.codecool.keywords.*;
 import com.codecool.pages.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -17,12 +14,16 @@ public class LogOutTest {
   private WebDriver driver;
   private NavbarKeyword navbarKeyword;
   private ClinicKeyword clinicKeyword;
+  private HomePage homePage;
+  private Navbar navbar;
 
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
     navbarKeyword = new NavbarKeyword(driver);
     clinicKeyword = new ClinicKeyword(driver);
+    navbar = new Navbar(driver);
+    homePage = new HomePage(driver);
 
     driver.manage().window().maximize();
 
@@ -32,6 +33,20 @@ public class LogOutTest {
     homeKeyword.openHome();
     loginKeyword.openFromNavbar();
     loginKeyword.login();
+  }
+
+  @Test
+  public void leavingLoggedInPageInBrowserBringsBackToLoggedOutHomeAfterReturningTest() {
+    BrowserKeyword browserKeyword = new BrowserKeyword(driver);
+    String buttonText = navbar.getProfileButtonText();
+
+    browserKeyword.navigateToIndifferentWebPagesInBrowser();
+    browserKeyword.navigateToIndifferentWebPagesInBrowser();
+    browserKeyword.navigateBack();
+    browserKeyword.navigateBack();
+
+    Assertions.assertTrue(homePage.currentUrlEquals());
+    Assertions.assertFalse(navbar.hasButtonWithText(buttonText));
   }
 
   @Test
@@ -48,7 +63,7 @@ public class LogOutTest {
 
     newDriver.manage().window().maximize();
 
-    newHomeKeyword.reOpenHomeWithoutIncognito(newDriver);
+    newHomeKeyword.reOpenHomeWithNoIncognitoBrowser(newDriver);
 
     Assertions.assertTrue(newNavbar.isLoginDisplayed());
     Assertions.assertTrue(newHomePage.currentUrlEquals());
@@ -67,7 +82,7 @@ public class LogOutTest {
 
     newDriver.manage().window().maximize();
 
-    newHomeKeyword.reOpenHomeWithIncognito(newDriver);
+    newHomeKeyword.reOpenHomeInIncognitoBrowser(newDriver);
 
     Assertions.assertTrue(newNavbar.isLoginDisplayed());
     Assertions.assertTrue(newHomePage.currentUrlEquals());
@@ -97,9 +112,6 @@ public class LogOutTest {
 
   @Test
   public void logOutWithButtonBringsToLoggedOutHomePageTest() {
-    Navbar navbar = new Navbar(driver);
-    HomePage homePage = new HomePage(driver);
-
     navbarKeyword.logOut();
 
     Assertions.assertTrue(navbar.isLoginDisplayed());

@@ -1,6 +1,7 @@
 package com.codecool.pages;
 
 import com.codecool.locators.ClinicHomeLocator;
+import com.codecool.model.Visible;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +11,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClinicHome extends Page {
+public class ClinicHome extends Page implements Visible {
   private static final String URL = "https://playground.qatools.dev/clinic";
 
   private final ClinicHomeLocator locator;
@@ -23,9 +24,9 @@ public class ClinicHome extends Page {
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
   }
 
+  @Override
   public boolean hasButtonWithText(String buttonText) {
-    List<String> buttonTextList = getTitleSectionButtonTextList();
-    return buttonTextList.contains(buttonText);
+    return getTitleSectionButtonTextList().contains(buttonText);
   }
 
   public List<String> getTitleSectionButtonTextList() {

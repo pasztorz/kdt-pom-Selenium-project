@@ -10,11 +10,11 @@ public class HomeKeyword {
     this.homePage = new HomePage(driver);
   }
 
-  public void reOpenHomeWithoutIncognito(WebDriver newDriver) {
+  public void reOpenHomeWithNoIncognitoBrowser(WebDriver newDriver) {
     newDriver.get(homePage.getUrl());
   }
 
-  public void reOpenHomeWithIncognito(WebDriver newDriver) {
+  public void reOpenHomeInIncognitoBrowser(WebDriver newDriver) {
     newDriver.get(homePage.getUrl());
     homePage.skipWelcome();
   }

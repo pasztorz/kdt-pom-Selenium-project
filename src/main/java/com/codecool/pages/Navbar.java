@@ -1,19 +1,42 @@
 package com.codecool.pages;
 
 import com.codecool.locators.NavbarLocator;
+import com.codecool.model.Visible;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Navbar {
+public class Navbar implements Visible {
   private final NavbarLocator navbarLocator;
   private final WebDriverWait wait;
 
   public Navbar(WebDriver driver) {
     this.navbarLocator = new NavbarLocator(driver);
     this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+  }
+
+  @Override
+  public boolean hasButtonWithText(String buttonText) {
+    return getNavbarButtonTextList().contains(buttonText);
+  }
+
+  public List<String> getNavbarButtonTextList() {
+    List<WebElement> navButtonList = navbarLocator.getNavbarNavButtonList();
+    List<String> buttonTextList = new ArrayList<>();
+
+    wait.until(ExpectedConditions.visibilityOf(navbarLocator.getPrimaryNavbar()));
+
+    for (WebElement element : navButtonList) {
+      String buttonText = element.getText();
+      buttonTextList.add(buttonText);
+    }
+
+    return buttonTextList;
   }
 
   public void clickLogOutButton() {
