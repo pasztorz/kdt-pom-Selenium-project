@@ -28,7 +28,7 @@ public class HomePageTest {
   public void openHomeBeforeLoginTest() {
     Navbar navbar = new Navbar(driver);
 
-    homeKeyword.openHome();
+    homeKeyword.openHomeWithWelcomePopUp();
 
     Assertions.assertTrue(navbar.isHomeButtonDisplayed());
     Assertions.assertTrue(navbar.isLoginDisplayed());

@@ -10,16 +10,11 @@ public class HomeKeyword {
     this.homePage = new HomePage(driver);
   }
 
-  public void reOpenHomeWithNoIncognitoBrowser(WebDriver newDriver) {
-    newDriver.get(homePage.getUrl());
+  public void openHomeWithoutPopUp() {
+    homePage.openPage();
   }
 
-  public void reOpenHomeInIncognitoBrowser(WebDriver newDriver) {
-    newDriver.get(homePage.getUrl());
-    homePage.skipWelcome();
-  }
-
-  public void openHome() {
+  public void openHomeWithWelcomePopUp() {
     homePage.openPage();
     homePage.skipWelcome();
   }

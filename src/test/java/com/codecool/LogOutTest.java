@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LogOutTest {
   private WebDriver driver;
+  private WebDriver newDriver;
   private NavbarKeyword navbarKeyword;
   private ClinicKeyword clinicKeyword;
   private HomePage homePage;
@@ -30,7 +31,7 @@ public class LogOutTest {
     HomeKeyword homeKeyword = new HomeKeyword(driver);
     LoginKeyword loginKeyword = new LoginKeyword(driver);
 
-    homeKeyword.openHome();
+    homeKeyword.openHomeWithWelcomePopUp();
     loginKeyword.openFromNavbar();
     loginKeyword.login();
   }
@@ -50,48 +51,118 @@ public class LogOutTest {
   }
 
   @Test
+  public void closingNoIncognitoBrowserTerminatesAccessToAppointmentsOnClinicHomeTest() {
+    driver.close();
+
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--user-data-dir=/some/test/profile");
+
+    newDriver = new ChromeDriver(options);
+    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    ClinicHome newClinicHome = new ClinicHome(newDriver);
+
+    newDriver.manage().window().maximize();
+
+    newHomeKeyword.openHomeWithoutPopUp();
+    newClinicKeyword.openClinicFromHomeWithClinicButton();
+
+    Assertions.assertFalse(newClinicHome.hasButtonWithText("My appointments"));
+  }
+
+  @Test
+  public void closingNoIncognitoBrowserTerminatesAccessToAppointmentsInNavbarTest() {
+    driver.close();
+
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--user-data-dir=/some/test/profile");
+
+    newDriver = new ChromeDriver(options);
+    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    ClinicSubNavbar newClinicSubNavbar = new ClinicSubNavbar(newDriver);
+
+    newDriver.manage().window().maximize();
+
+    newHomeKeyword.openHomeWithoutPopUp();
+    newClinicKeyword.openClinicFromHomeWithClinicButton();
+
+    Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText("My appointments"));
+  }
+
+  @Test
   public void closingNoIncognitoBrowserBringsToLoggedOutHomeAfterReopeningTest() {
     driver.close();
 
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--user-data-dir=/some/test/profile");
 
-    WebDriver newDriver = new ChromeDriver(options);
+    newDriver = new ChromeDriver(options);
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     HomePage newHomePage = new HomePage(newDriver);
     Navbar newNavbar = new Navbar(newDriver);
 
     newDriver.manage().window().maximize();
 
-    newHomeKeyword.reOpenHomeWithNoIncognitoBrowser(newDriver);
+    newHomeKeyword.openHomeWithoutPopUp();
 
     Assertions.assertTrue(newNavbar.isLoginDisplayed());
     Assertions.assertTrue(newHomePage.currentUrlEquals());
+  }
 
-    newDriver.quit();
+  @Test
+  public void closingIncognitoBrowserTerminatesAccessToAppointmentsOnClinicHomeTest() {
+    driver.close();
+
+    newDriver = new ChromeDriver();
+    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    ClinicHome newClinicHome = new ClinicHome(newDriver);
+
+    newDriver.manage().window().maximize();
+
+    newHomeKeyword.openHomeWithWelcomePopUp();
+    newClinicKeyword.openClinicFromHomeWithClinicButton();
+
+    Assertions.assertFalse(newClinicHome.hasButtonWithText("My appointments"));
+  }
+
+  @Test
+  public void closingIncognitoBrowserTerminatesAccessToAppointmentsInNavbarTest() {
+    driver.close();
+
+    newDriver = new ChromeDriver();
+    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    ClinicSubNavbar newClinicSubNavbar = new ClinicSubNavbar(newDriver);
+
+    newDriver.manage().window().maximize();
+
+    newHomeKeyword.openHomeWithWelcomePopUp();
+    newClinicKeyword.openClinicFromHomeWithClinicButton();
+
+    Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText("My appointments"));
   }
 
   @Test
   public void closingIncognitoBrowserBringsToLoggedOutHomeAfterReopeningTest() {
     driver.close();
 
-    WebDriver newDriver = new ChromeDriver();
+    newDriver = new ChromeDriver();
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     HomePage newHomePage = new HomePage(newDriver);
     Navbar newNavbar = new Navbar(newDriver);
 
     newDriver.manage().window().maximize();
 
-    newHomeKeyword.reOpenHomeInIncognitoBrowser(newDriver);
+    newHomeKeyword.openHomeWithWelcomePopUp();
 
     Assertions.assertTrue(newNavbar.isLoginDisplayed());
     Assertions.assertTrue(newHomePage.currentUrlEquals());
-
-    newDriver.quit();
   }
 
   @Test
-  public void logOutWithButtonTerminatesAccessToAppointmentsOnClinicHomePageTest() {
+  public void logOutWithButtonTerminatesAccessToAppointmentsOnClinicHomeTest() {
     ClinicHome clinicHome = new ClinicHome(driver);
 
     navbarKeyword.logOut();
@@ -121,5 +192,7 @@ public class LogOutTest {
   @AfterEach
   void tearDown() {
     driver.quit();
+
+    if (newDriver != null) newDriver.quit();
   }
 }
