@@ -12,25 +12,22 @@ public class BrowserKeyword {
     this.driver = driver;
   }
 
-  public WebDriver createPersistentChromeSession() {
+  public void closeOpenedBrowser() {
     driver.close();
+  }
 
+  public WebDriver openNewPersistentChrome() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--user-data-dir=/some/test/profile");
 
     WebDriver newDriver = new ChromeDriver(options);
-
     newDriver.manage().window().maximize();
 
     return newDriver;
   }
 
-
-  public WebDriver createFreshChromeSession() {
-    driver.close();
-
+  public WebDriver openNewFreshChrome() {
     WebDriver newDriver = new ChromeDriver();
-
     newDriver.manage().window().maximize();
 
     return newDriver;

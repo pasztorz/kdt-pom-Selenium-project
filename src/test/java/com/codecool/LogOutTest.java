@@ -75,15 +75,16 @@ public class LogOutTest {
     browserKeyword.navigateBack();
     browserKeyword.navigateBack();
 
-    /// assertion bullshit !!!
+    /// ALL BUTTON TEXT assertion bullshit !!!
     /// this assertion would even fail in case of proper functioning - because of time exception !!!
     /// the only working one could be at this stage the navbar `div` and `a` elements' list size comparison !!!
     Assertions.assertFalse(navbar.hasButtonWithText(profileButtonText));
   }
 
   @Test
-  public void closingNoIncognitoBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
-    newDriver = browserKeyword.createPersistentChromeSession();
+  public void closingPersistentBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
+    browserKeyword.closeOpenedBrowser();
+    newDriver = browserKeyword.openNewPersistentChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
@@ -96,8 +97,9 @@ public class LogOutTest {
   }
 
   @Test
-  public void closingNoIncognitoBrowserTerminatesAppointmentsAccessInNavbarTest() {
-    newDriver = browserKeyword.createPersistentChromeSession();
+  public void closingPersistentBrowserTerminatesAppointmentsAccessInNavbarTest() {
+    browserKeyword.closeOpenedBrowser();
+    newDriver = browserKeyword.openNewPersistentChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
@@ -110,8 +112,9 @@ public class LogOutTest {
   }
 
   @Test
-  public void closingNoIncognitoBrowserBringsToLoggedOutHomeAfterReopeningTest() {
-    newDriver = browserKeyword.createPersistentChromeSession();
+  public void closingPersistentBrowserBringsToLoggedOutHomeAfterReopeningTest() {
+    browserKeyword.closeOpenedBrowser();
+    newDriver = browserKeyword.openNewPersistentChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     HomePage newHomePage = new HomePage(newDriver);
@@ -124,8 +127,9 @@ public class LogOutTest {
   }
 
   @Test
-  public void closingIncognitoBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
-    newDriver = browserKeyword.createFreshChromeSession();
+  public void closingFreshBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
+    browserKeyword.closeOpenedBrowser();
+    newDriver = browserKeyword.openNewFreshChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
@@ -138,8 +142,9 @@ public class LogOutTest {
   }
 
   @Test
-  public void closingIncognitoBrowserTerminatesAppointmentsAccessInNavbarTest() {
-    newDriver = browserKeyword.createFreshChromeSession();
+  public void closingFreshBrowserTerminatesAppointmentsAccessInNavbarTest() {
+    browserKeyword.closeOpenedBrowser();
+    newDriver = browserKeyword.openNewFreshChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
@@ -152,8 +157,9 @@ public class LogOutTest {
   }
 
   @Test
-  public void closingIncognitoBrowserBringsToLoggedOutHomeAfterReopeningTest() {
-    newDriver = browserKeyword.createFreshChromeSession();
+  public void closingFreshBrowserBringsToLoggedOutHomeAfterReopeningTest() {
+    browserKeyword.closeOpenedBrowser();
+    newDriver = browserKeyword.openNewFreshChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
     HomePage newHomePage = new HomePage(newDriver);
