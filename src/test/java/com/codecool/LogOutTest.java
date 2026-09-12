@@ -83,7 +83,7 @@ public class LogOutTest {
 
   @Test
   public void closingPersistentBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
-    browserKeyword.closeOpenedBrowser();
+    browserKeyword.closeBrowser();
     newDriver = browserKeyword.openNewPersistentChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -98,7 +98,7 @@ public class LogOutTest {
 
   @Test
   public void closingPersistentBrowserTerminatesAppointmentsAccessInNavbarTest() {
-    browserKeyword.closeOpenedBrowser();
+    browserKeyword.closeBrowser();
     newDriver = browserKeyword.openNewPersistentChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -113,7 +113,7 @@ public class LogOutTest {
 
   @Test
   public void closingPersistentBrowserBringsToLoggedOutHomeAfterReopeningTest() {
-    browserKeyword.closeOpenedBrowser();
+    browserKeyword.closeBrowser();
     newDriver = browserKeyword.openNewPersistentChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -128,7 +128,7 @@ public class LogOutTest {
 
   @Test
   public void closingFreshBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
-    browserKeyword.closeOpenedBrowser();
+    browserKeyword.closeBrowser();
     newDriver = browserKeyword.openNewFreshChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -143,7 +143,7 @@ public class LogOutTest {
 
   @Test
   public void closingFreshBrowserTerminatesAppointmentsAccessInNavbarTest() {
-    browserKeyword.closeOpenedBrowser();
+    browserKeyword.closeBrowser();
     newDriver = browserKeyword.openNewFreshChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
@@ -158,7 +158,7 @@ public class LogOutTest {
 
   @Test
   public void closingFreshBrowserBringsToLoggedOutHomeAfterReopeningTest() {
-    browserKeyword.closeOpenedBrowser();
+    browserKeyword.closeBrowser();
     newDriver = browserKeyword.openNewFreshChrome();
 
     HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);

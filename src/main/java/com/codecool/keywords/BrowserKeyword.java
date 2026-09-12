@@ -12,7 +12,7 @@ public class BrowserKeyword {
     this.driver = driver;
   }
 
-  public void closeOpenedBrowser() {
+  public void closeBrowser() {
     driver.close();
   }
 
