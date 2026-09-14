@@ -10,11 +10,23 @@ public class HomeKeyword {
     this.homePage = new HomePage(driver);
   }
 
+  public void openNewPersistentHome(WebDriver newDriver) {
+    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+
+    newHomeKeyword.openHomeWithoutPopUp();
+  }
+
+  public void openNewFreshHome(WebDriver newDriver) {
+    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+
+    newHomeKeyword.openHomeAndHandleWelcomePopUp();
+  }
+
   public void openHomeWithoutPopUp() {
     homePage.openPage();
   }
 
-  public void openHomeWithWelcomePopUp() {
+  public void openHomeAndHandleWelcomePopUp() {
     homePage.openPage();
     homePage.skipWelcome();
   }

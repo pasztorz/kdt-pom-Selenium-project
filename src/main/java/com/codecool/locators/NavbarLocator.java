@@ -11,13 +11,13 @@ import java.util.List;
 public class NavbarLocator {
 
   @FindBy(css = "nav[aria-label='Primary navigation']")
-  private WebElement primaryNavbar;
+  private WebElement primaryNavigation;
 
   @FindBys({
     @FindBy(css = "nav[aria-label='Primary navigation']"),
-    @FindBy(tagName = "a")
+    @FindBy(css = "nav[aria-label='Primary navigation'] > *")
   })
-  private List<WebElement> navbarNavButtonList;
+  private List<WebElement> primaryNavigationChildList;
 
   @FindBy(css = ".navbar-brand-main")
   private WebElement homeButton;
@@ -35,12 +35,12 @@ public class NavbarLocator {
     PageFactory.initElements(driver, this);
   }
 
-  public WebElement getPrimaryNavbar() {
-    return primaryNavbar;
+  public WebElement getPrimaryNavigation() {
+    return primaryNavigation;
   }
 
-  public List<WebElement> getNavbarNavButtonList() {
-    return navbarNavButtonList;
+  public List<WebElement> getPrimaryNavigationChildList() {
+    return primaryNavigationChildList;
   }
 
   public WebElement getHomeButton() {

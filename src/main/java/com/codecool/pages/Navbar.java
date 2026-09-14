@@ -22,21 +22,21 @@ public class Navbar implements Visible {
 
   @Override
   public boolean hasButtonWithText(String buttonText) {
-    return getNavbarButtonTextList().contains(buttonText);
+    return getPrimaryNavigationChildrensTextList().contains(buttonText);
   }
 
-  public List<String> getNavbarButtonTextList() {
-    List<WebElement> navButtonList = navbarLocator.getNavbarNavButtonList();
-    List<String> buttonTextList = new ArrayList<>();
+  public List<String> getPrimaryNavigationChildrensTextList() {
+    wait.until(ExpectedConditions.visibilityOf(navbarLocator.getPrimaryNavigation()));
 
-    wait.until(ExpectedConditions.visibilityOf(navbarLocator.getPrimaryNavbar()));
+    List<WebElement> navButtonList = navbarLocator.getPrimaryNavigationChildList();
+    List<String> textList = new ArrayList<>();
 
     for (WebElement element : navButtonList) {
-      String buttonText = element.getText();
-      buttonTextList.add(buttonText);
+      String buttonText = element.getAttribute("innerText");
+      textList.add(buttonText);
     }
-
-    return buttonTextList;
+    System.out.println(textList);
+    return textList;
   }
 
   public void clickLogOutButton() {
@@ -49,6 +49,7 @@ public class Navbar implements Visible {
   }
 
   public String getLogOutButtonText() {
+    wait.until(ExpectedConditions.visibilityOf(navbarLocator.getPrimaryNavigation()));
     return navbarLocator.getLogOutButton().getAttribute("innerText");
   }
 

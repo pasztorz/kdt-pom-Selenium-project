@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class LogOutTest {
   private WebDriver driver;
   private WebDriver newDriver;
+  private HomeKeyword homeKeyword;
   private NavbarKeyword navbarKeyword;
   private ClinicKeyword clinicKeyword;
   private BrowserKeyword browserKeyword;
@@ -26,6 +27,7 @@ public class LogOutTest {
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
+    homeKeyword = new HomeKeyword(driver);
     navbarKeyword = new NavbarKeyword(driver);
     clinicKeyword = new ClinicKeyword(driver);
     browserKeyword = new BrowserKeyword(driver);
@@ -36,10 +38,9 @@ public class LogOutTest {
 
     driver.manage().window().maximize();
 
-    HomeKeyword homeKeyword = new HomeKeyword(driver);
     LoginKeyword loginKeyword = new LoginKeyword(driver);
 
-    homeKeyword.openHomeWithWelcomePopUp();
+    homeKeyword.openHomeAndHandleWelcomePopUp();
     loginKeyword.openFromNavbar();
     loginKeyword.login();
   }
@@ -75,23 +76,18 @@ public class LogOutTest {
     browserKeyword.navigateBack();
     browserKeyword.navigateBack();
 
-    /// ALL BUTTON TEXT assertion bullshit !!!
-    /// this assertion would even fail in case of proper functioning - because of time exception !!!
-    /// the only working one could be at this stage the navbar `div` and `a` elements' list size comparison !!!
     Assertions.assertFalse(navbar.hasButtonWithText(profileButtonText));
   }
 
   @Test
   public void closingPersistentBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
     browserKeyword.closeBrowser();
-    newDriver = browserKeyword.openNewPersistentChrome();
 
-    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
-    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    newDriver = browserKeyword.openNewPersistentChrome();
     ClinicHome newClinicHome = new ClinicHome(newDriver);
 
-    newHomeKeyword.openHomeWithoutPopUp();
-    newClinicKeyword.openClinicFromHomeWithClinicButton();
+    homeKeyword.openNewPersistentHome(newDriver);
+    clinicKeyword.openClinicFromNewHome(newDriver);
 
     Assertions.assertFalse(newClinicHome.hasButtonWithText(appointmentsButtonText));
   }
@@ -99,14 +95,12 @@ public class LogOutTest {
   @Test
   public void closingPersistentBrowserTerminatesAppointmentsAccessInNavbarTest() {
     browserKeyword.closeBrowser();
-    newDriver = browserKeyword.openNewPersistentChrome();
 
-    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
-    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    newDriver = browserKeyword.openNewPersistentChrome();
     ClinicSubNavbar newClinicSubNavbar = new ClinicSubNavbar(newDriver);
 
-    newHomeKeyword.openHomeWithoutPopUp();
-    newClinicKeyword.openClinicFromHomeWithClinicButton();
+    homeKeyword.openNewPersistentHome(newDriver);
+    clinicKeyword.openClinicFromNewHome(newDriver);
 
     Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText(appointmentsButtonText));
   }
@@ -114,13 +108,12 @@ public class LogOutTest {
   @Test
   public void closingPersistentBrowserBringsToLoggedOutHomeAfterReopeningTest() {
     browserKeyword.closeBrowser();
-    newDriver = browserKeyword.openNewPersistentChrome();
 
-    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+    newDriver = browserKeyword.openNewPersistentChrome();
     HomePage newHomePage = new HomePage(newDriver);
     Navbar newNavbar = new Navbar(newDriver);
 
-    newHomeKeyword.openHomeWithoutPopUp();
+    homeKeyword.openNewPersistentHome(newDriver);
 
     Assertions.assertTrue(newNavbar.isLoginDisplayed());
     Assertions.assertTrue(newHomePage.currentUrlEquals());
@@ -129,14 +122,12 @@ public class LogOutTest {
   @Test
   public void closingFreshBrowserTerminatesAppointmentsAccessOnClinicHomeTest() {
     browserKeyword.closeBrowser();
-    newDriver = browserKeyword.openNewFreshChrome();
 
-    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
-    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    newDriver = browserKeyword.openNewFreshChrome();
     ClinicHome newClinicHome = new ClinicHome(newDriver);
 
-    newHomeKeyword.openHomeWithWelcomePopUp();
-    newClinicKeyword.openClinicFromHomeWithClinicButton();
+    homeKeyword.openNewFreshHome(newDriver);
+    clinicKeyword.openClinicFromNewHome(newDriver);
 
     Assertions.assertFalse(newClinicHome.hasButtonWithText(appointmentsButtonText));
   }
@@ -144,14 +135,12 @@ public class LogOutTest {
   @Test
   public void closingFreshBrowserTerminatesAppointmentsAccessInNavbarTest() {
     browserKeyword.closeBrowser();
-    newDriver = browserKeyword.openNewFreshChrome();
 
-    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
-    ClinicKeyword newClinicKeyword = new ClinicKeyword(newDriver);
+    newDriver = browserKeyword.openNewFreshChrome();
     ClinicSubNavbar newClinicSubNavbar = new ClinicSubNavbar(newDriver);
 
-    newHomeKeyword.openHomeWithWelcomePopUp();
-    newClinicKeyword.openClinicFromHomeWithClinicButton();
+    homeKeyword.openNewFreshHome(newDriver);
+    clinicKeyword.openClinicFromNewHome(newDriver);
 
     Assertions.assertFalse(newClinicSubNavbar.hasButtonWithText(appointmentsButtonText));
   }
@@ -159,13 +148,12 @@ public class LogOutTest {
   @Test
   public void closingFreshBrowserBringsToLoggedOutHomeAfterReopeningTest() {
     browserKeyword.closeBrowser();
-    newDriver = browserKeyword.openNewFreshChrome();
 
-    HomeKeyword newHomeKeyword = new HomeKeyword(newDriver);
+    newDriver = browserKeyword.openNewFreshChrome();
     HomePage newHomePage = new HomePage(newDriver);
     Navbar newNavbar = new Navbar(newDriver);
 
-    newHomeKeyword.openHomeWithWelcomePopUp();
+    homeKeyword.openNewFreshHome(newDriver);
 
     Assertions.assertTrue(newNavbar.isLoginDisplayed());
     Assertions.assertTrue(newHomePage.currentUrlEquals());

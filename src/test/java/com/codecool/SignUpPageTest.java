@@ -30,7 +30,7 @@ public class SignUpPageTest {
     driver.manage().window().maximize();
 
     HomeKeyword homeKeyword = new HomeKeyword(driver);
-    homeKeyword.openHomeWithWelcomePopUp();
+    homeKeyword.openHomeAndHandleWelcomePopUp();
   }
 
   @ParameterizedTest
