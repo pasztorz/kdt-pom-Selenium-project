@@ -1,23 +1,30 @@
+# <p style="text-align:center">Keyword-Driven Testing-Page Object Model<br>Hybrid Test Project</p>
+## <p style="text-align:center">- with Selenium, in Java -</p>
 
 ## About the Project
 
-This is a Test Automation project to improve my skills and knowledge and experiences on the hybrid use of Keyword Driven Testing approach and Page Object Model implemented in Java and using Selenium for automation as well as in planning and impementing Test projects.
+This is a Test Automation project with parallel goals: 
+- to improve and 
+- to present my skills and knowledge and experiences on the hybrid use of Keyword Driven Testing approach and Page Object Model implemented in Java and using Selenium for automation
+- as well as in planning and impementing Test projects.
 
 ## System Under Test (SUT)
 
-URL: https://playground.qatools.dev/clinic
+URL: https://playground.qatools.dev/
 
 The above page is a Test Automation practice site developed for training purposes. To navigate to the page, `click` on the above link.
 
-## Scope of the Test project
+## Scope of the Test Project
 
-As I use a practice site for this project and I have no access to either the source code or to the connected database, the test project's goals and scope are limited in some extent, as a consequence.
+As I use a practice site for this project and I have no access to either the source code or to the connected database, the test project's goals and scope are limited in some extent.
 
 1. *Security tests:*
     
-    Keeping a page's users' account private, security and account access are crucial considarations. As doing so, security test opportunuties was identified but backend password-storage verification is outside the scope of my current black-box test automation setup. In spite of this I did my best to verify some basic password and account security aspects, e.g.: if
+    Keeping a page's users' account private, security and account access are crucial considarations. As doing so, security test opportunities was identified but backend password-storage verification is outside the scope of my current black-box test automation setup. In spite of this, I did my best to verify some basic password and account security aspects, e.g.: 
+    
+    if
     * password is displayed on the page or
-    * error messages do not reveal sensitive information
+    * error messages do reveal sensitive information
     * password is exposed in URL/query parameters
     * login works with correct password
     * login does not work with incorrect password
@@ -25,11 +32,7 @@ As I use a practice site for this project and I have no access to either the sou
       - leaving the page,
       - closing the browser or
       - logout
-    * logged-out/not registered user's appointments are not available by opening the page again after booking or any other way
-
-
-
-
+    * logged-out/not registered user's appointments are not available by opening the page again after booking or any other way.
 
 ## Jira Project Space
 
