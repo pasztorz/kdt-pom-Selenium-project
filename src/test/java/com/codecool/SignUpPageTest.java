@@ -19,26 +19,32 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class SignUpPageTest {
   private WebDriver driver;
   private SignUpPage signUpPage;
+  private Navbar navbar;
   private SignUpKeyword signUpKeyword;
+
+  private String generatedPassword;
 
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
     signUpPage = new SignUpPage(driver);
+    navbar = new Navbar(driver);
     signUpKeyword = new SignUpKeyword(driver);
+    HomeKeyword homeKeyword = new HomeKeyword(driver);
+
+    generatedPassword = signUpKeyword.getUniquePassword();
 
     driver.manage().window().maximize();
 
-    HomeKeyword homeKeyword = new HomeKeyword(driver);
-    homeKeyword.openHomeAndHandleWelcomePopUp();
+    homeKeyword.openHomeAndSkipPopUp();
   }
 
   @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_signup_credentials.csv", numLinesToSkip = 1)
-  public void signUpFailsWithWrongAndMissingFieldsTest(String field, String name, String email, String password, String confirmation,
+  public void signUpFailsWithWrongAndMissingFieldsTest(String field, String name, String email, String paramPassword, String confirmation,
                                            String countryCode, String gender, String agreement, String expected) {
     signUpKeyword.openFromLoginPage();
-    signUpKeyword.signUp(name, email, password, confirmation, countryCode, gender, agreement);
+    signUpKeyword.signUp(name, email, paramPassword, confirmation, countryCode, gender, agreement);
 
     Assertions.assertEquals(expected, signUpPage.getErrorMessage(field));
     Assertions.assertTrue(signUpPage.currentUrlContains("signup"));
@@ -56,44 +62,37 @@ public class SignUpPageTest {
 
   @Test
   public void passwordIsNotExposedInNavigationButtonsAfterSignUpTest() {
-    Navbar navbar = new Navbar(driver);
-    String password = signUpKeyword.getUniquePassword();
-
     signUpKeyword.openFromLoginPage();
-    signUpKeyword.signUp(password);
+    signUpKeyword.signUp(generatedPassword);
 
-    Assertions.assertFalse(navbar.profileButtonContains(password));
-    Assertions.assertFalse(navbar.logOutButtonContains(password));
+    Assertions.assertFalse(navbar.profileButtonContains(generatedPassword));
+    Assertions.assertFalse(navbar.logOutButtonContains(generatedPassword));
   }
 
   @Test
   public void passwordIsNotExposedInProfileAfterSignUpTest() {
     ProfilePage profilePage = new ProfilePage(driver);
     ProfileKeyword profileKeyword = new ProfileKeyword(driver);
-    String password = signUpKeyword.getUniquePassword();
 
     signUpKeyword.openFromLoginPage();
-    signUpKeyword.signUp(password);
+    signUpKeyword.signUp(generatedPassword);
 
     profileKeyword.openProfileForm();
 
-    Assertions.assertFalse(profilePage.profilePageContains(password));
+    Assertions.assertFalse(profilePage.profilePageContains(generatedPassword));
   }
 
   @Test
   public void passwordIsNotExposedInUrlAfterSignUpTest() {
-    String password = signUpKeyword.getUniquePassword();
-
     signUpKeyword.openFromLoginPage();
-    signUpKeyword.signUp(password);
+    signUpKeyword.signUp(generatedPassword);
 
-    Assertions.assertFalse(signUpPage.currentUrlContains(password));
+    Assertions.assertFalse(signUpPage.currentUrlContains(generatedPassword));
   }
 
   @Test
   public void signUpWithValidFieldContentTest() {
     HomePage homePage = new HomePage(driver);
-    Navbar navbar = new Navbar(driver);
 
     signUpKeyword.openFromLoginPage();
     signUpKeyword.signUp();

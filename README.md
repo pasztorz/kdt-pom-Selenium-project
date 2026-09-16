@@ -27,6 +27,10 @@ As I use a practice site for this project and I have no access to either the sou
       - logout
     * logged-out/not registered user's appointments are not available by opening the page again after booking or any other way
 
+
+
+
+
 ## Jira Project Space
 
 There is a Space set up for this project in Jira as well. Being 

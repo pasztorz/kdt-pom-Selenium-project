@@ -25,7 +25,7 @@ public class LoginKeyword {
     login(EMAIL, password);
   }
 
-  public static String getPASSWORD() {
+  public String getPASSWORD() {
     return PASSWORD;
   }
 

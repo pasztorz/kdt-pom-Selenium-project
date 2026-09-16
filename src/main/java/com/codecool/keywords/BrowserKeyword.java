@@ -16,7 +16,7 @@ public class BrowserKeyword {
     driver.close();
   }
 
-  public WebDriver openNewPersistentChrome() {
+  public WebDriver openPersistentChrome() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--user-data-dir=/some/test/profile");
 
@@ -26,7 +26,7 @@ public class BrowserKeyword {
     return newDriver;
   }
 
-  public WebDriver openNewFreshChrome() {
+  public WebDriver openFreshChrome() {
     WebDriver newDriver = new ChromeDriver();
     newDriver.manage().window().maximize();
 

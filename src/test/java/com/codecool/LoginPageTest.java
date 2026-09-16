@@ -19,24 +19,28 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class LoginPageTest {
   private WebDriver driver;
   private LoginPage loginPage;
+  private HomePage homePage;
+  private Navbar navbar;
   private LoginKeyword loginKeyword;
 
   @BeforeEach
   void setUp() {
     driver = new ChromeDriver();
     loginPage = new LoginPage(driver);
+    homePage = new HomePage(driver);
+    navbar = new Navbar(driver);
     loginKeyword = new LoginKeyword(driver);
+    HomeKeyword homeKeyword = new HomeKeyword(driver);
 
     driver.manage().window().maximize();
 
-    HomeKeyword homeKeyword = new HomeKeyword(driver);
-    homeKeyword.openHomeAndHandleWelcomePopUp();
+    homeKeyword.openHomeAndSkipPopUp();
   }
 
   @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_logins_for_password_exposure_in_errors.csv", numLinesToSkip = 1)
   public void passwordIsNotExposedInErrorMessagesTest(String field, String invalidPassword) {
-    String validPassword = LoginKeyword.getPASSWORD();
+    String validPassword = loginKeyword.getPASSWORD();
 
     loginKeyword.openFromNavbar();
     loginKeyword.login(invalidPassword);
@@ -46,9 +50,9 @@ public class LoginPageTest {
 
   @ParameterizedTest
   @CsvFileSource(resources = "/testdata/invalid_login_credentials.csv", numLinesToSkip = 1)
-  public void loginFailsWithWrongAndMissingFieldsTest(String field, String email, String password, String expected) {
+  public void loginFailsWithWrongAndMissingFieldsTest(String field, String email, String paramPassword, String expected) {
     loginKeyword.openFromNavbar();
-    loginKeyword.login(email, password);
+    loginKeyword.login(email, paramPassword);
 
     Assertions.assertEquals(expected, loginPage.getErrorMessage(field));
     Assertions.assertTrue(loginPage.currentUrlContains("login"));
@@ -65,7 +69,7 @@ public class LoginPageTest {
   public void passwordIsNotExposedInProfileAfterLoginTesT() {
     ProfilePage profilePage = new ProfilePage(driver);
     ProfileKeyword profileKeyword = new ProfileKeyword(driver);
-    String password = LoginKeyword.getPASSWORD();
+    String password = loginKeyword.getPASSWORD();
 
     loginKeyword.openFromNavbar();
     loginKeyword.login(password);
@@ -76,8 +80,7 @@ public class LoginPageTest {
 
   @Test
   public void passwordIsNotExposedInNavigationButtonsAfterLoginTest() {
-    Navbar navbar = new Navbar(driver);
-    String password = LoginKeyword.getPASSWORD();
+    String password = loginKeyword.getPASSWORD();
 
     loginKeyword.openFromNavbar();
     loginKeyword.login(password);
@@ -88,8 +91,7 @@ public class LoginPageTest {
 
   @Test
   public void passwordIsNotExposedInUrlAfterLoginTest() {
-    HomePage homePage = new HomePage(driver);
-    String password = LoginKeyword.getPASSWORD();
+    String password = loginKeyword.getPASSWORD();
 
     loginKeyword.openFromNavbar();
     loginKeyword.login(password);
@@ -99,9 +101,6 @@ public class LoginPageTest {
 
   @Test
   public void loginWithValidFieldsContentTest() {
-    Navbar navbar = new Navbar(driver);
-    HomePage homePage = new HomePage(driver);
-
     loginKeyword.openFromNavbar();
     loginKeyword.login();
 
